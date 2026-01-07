@@ -1,0 +1,314 @@
+Linux
+
+\section{Terminal de Linux}
+
+Linux es un sistema operativo
+
+Dentro de este sistema, se tiene la terminal, tambien conocida como CLI. Esta nos permite interactuar con el sistema operativo de varias maneras, entre ellas, manejar archivos, sistema operativo, ejecutar programas, y demas.
+
+Si durante el desarrollo de este laboratorio no saben que hace un comando, o deseen profundizar en el, pueden usar el comando de manual.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={man: (man)ual para comandos en Linux}]
+user@hostname:~$ man <command>
+\end{lstlisting}
+
+Varios ejecutables tendran modificaciones conocidas como \textbf{flags}, las cuales generalmente se denotan mediante \texttt{<comando> -<flag>}. No se veran todas las flags dentro de este archivo, pero el comando man le puede entregar esta información.
+
+Para terminos del curso, carpeta y directorio se refieren al mismo termino.
+
+\section{Moviendose en la Terminal}
+
+Cuando empezamos en la terminal de linux, esta se abre en una ubicación dentro del archivo. Para saber en que carpeta estamos actualmente, se usa el comando `print working directory`.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={pwd: Ver ubicación actual}]
+user@hostname:~$ pwd
+\end{lstlisting}
+
+\begin{ejer}
+    Al abrir la terminal de linux, obtenga el directorio en donde empieza al iniciar la terminal. 
+\end{ejer}
+
+\newpage
+Tras realizar el ejercicio anterior, le deberia aparecer el directorio `/home/<usuario>`. En linux, los elementos se estructuran en base a directorios. Todo elemento comienza desde el directorio principal que se le conoce como `root` o raiz. Esta estrucura se conoce como FHS (Filesystem Hierarchy Standard)
+
+\begin{lstlisting}[language=bash]
+    /
+    |-- bin/
+    |-- boot/
+    |-- dev/
+    |-- etc/
+    |-- home/
+    |-- lib/
+    |-- mnt/
+    |-- opt/
+    |-- tmp/
+    |-- usr/
+    ..  
+\end{lstlisting}
+
+Dentro de esta carpeta, los directorios personales asociados a cada usuario se encuentran dentro de la carpeta `home`. Al iniciar la terminal, usted inicia en la carpeta home asociada al usuario actual.
+
+Para saber que carpetas se encuentran en la actual, se utiliza el comando list (ls). Retornara todos los contenidos dentro del directorio actual.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={ls: Lista de archivos en el directorio actual}]
+user@hostname:~$ ls
+\end{lstlisting}
+
+En el caso de querer ver un los contenidos de una carpeta, se puede indicar ubicación
+
+\begin{lstlisting}[language=bash, style=terminal, caption={ls: Lista de archivos}]
+user@hostname:~$ ls <directorio>
+\end{lstlisting}
+
+Si desea ver archivos ocultos, se puede utilizar la flag de \texttt{-a} que indica que muestre todos los archivos posibles.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={ls: Lista de archivos con archivos ocultos}]
+user@hostname:~$ ls -a <directorio>
+\end{lstlisting}
+
+Para moverse entre carpetas, se utiliza el comando change directory (cd), indicando el nombre de la carpeta a la que desea moverse
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cd: Cambiar de directorio}]
+user@hostname:~$ cd <directorio>
+\end{lstlisting}
+
+En el caso de querer volver para atras, se utiliza cd con el nombre .., indicando que se quiere mover a la carpeta superior.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cd: Cambiar al directorio padre}]
+user@hostname:~$ cd ..
+\end{lstlisting}
+
+Si tras moverse por varios archivos se desea volver al inicio, tan solo es necesario utilizar cd sin ningun argumento.
+
+\section{Manejo de Archivos}
+
+Para crear una carpeta dentro de la terminal, se utiliza el comando mkdir (make directory)
+
+\begin{lstlisting}[language=bash, style=terminal, caption={mkdir: Crear directorio}]
+user@hostname:~$ mkdir <nombre>
+\end{lstlisting}
+
+\begin{ejer}
+    Cree una carpeta llamada falso-repositorio, en la cual usted mediante los comandos de linux anteriormente mencionados, cree la siguiente estructura de carpetas:
+    \begin{lstlisting}[language=bash]
+    /falso-repositorio
+    |-- src
+    |-- img
+    |-- latex
+    |-- dummy
+    \end{lstlisting}
+    Realize esta carpeta desde la ubicación \texttt{$\sim$/Documents}.
+\end{ejer}
+
+Para la creación de archivos, hay varias maneras para crearlos. Si queremos crear un archivo sin ningun contenido dentro, se puede utilizar el comando touch.
+
+El comando touch permite crear un archivo si este no existe. En caso de que exista, modificara la ultima fecha de modificación (timestamp).
+
+\begin{lstlisting}[language=bash, style=terminal, caption={touch: Crear archivo o modificar timestamp}]
+user@hostname:~$ touch <nombre>
+\end{lstlisting}
+
+\begin{ejer}
+    En falso-repositorio, cree un archivo README.md tanto dentro de la carpeta principal como en la carpeta de latex e img. Realice estos comandos desde la carpeta principal (falso-repositorio).
+    
+    Pista: El nombre del archivo puede escribirse de la forma \texttt{carpeta/archivo} para indicar la ubicación.
+\end{ejer}
+
+Una forma de escribir archivos en la terminal es utilizando printf. De la misma manera que en C el printf imprimia en la terminal, podemos realizar la misma operación desde esta
+
+\begin{lstlisting}[language=bash, style=terminal, caption={printf: Imprimir en pantalla}]
+user@hostname:~$ printf "<contenido>"
+\end{lstlisting}
+
+Usando el output de printf, podemos decir que inserte este contenido dentro de un archivo utilizando el operador de redireccion \texttt{>}, que indica redigir el output a alguna sección. Podemos usarlo para escribir dentro de archivos.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={printf: Ingresar contenido a un archivo}]
+user@hostname:~$ printf "<contenido>" > <archivo-a-escribir>
+\end{lstlisting}
+
+\begin{ejer}
+    En falso-repositorio, modifique el archivo README de la carpeta principal para que contenga \texttt{\#falso-repositorio}
+\end{ejer}
+
+Para ver los contenidos del archivo, utilizar el comando concatenate 
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cat: Ver contenido del archivo}]
+user@hostname:~$ cat <archivo>
+\end{lstlisting}
+
+Para mover archivos se utiliza el comando move
+
+\begin{lstlisting}[language=bash, style=terminal, caption={mv: Mover archivo}]
+user@hostname:~$ touch <archivo-a-mover> <nueva-ubicacion>
+\end{lstlisting}
+
+\begin{ejer}
+    Digamos que nos equivocamos de ubicación, y que realmente el archivo README de la carpeta img debiera de estar src. Mueva el archivo desde la carpeta principal (falso-repositorio) utilizando el comando mv
+\end{ejer}
+
+En caso de querer copiar un archivo, se utiliza el comando copy
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cp: Copiar Archivo}]
+user@hostname:~$ cp <archivo-a-mover> <nueva-ubicacion>
+\end{lstlisting}
+
+\begin{ejer}
+    En la carpeta Documents (en donde debería encontrarse falso-repositorio) se encuentra una carpeta llamada code. Copie los contenidos de esta en la carpeta principal (falso-repositorio) utilizando el comando cp. Realice el comando desde la carpeta principal
+
+    Pista: Como se puede indicar una ubicación de un archivo de la forma carpeta/archivo, también podemos indicar archivos en carpetas superiores con \texttt{../archivo}
+\end{ejer}
+
+Para poder saber la ubicación de archivos, dependerá de lo se quiere buscar. 
+
+Los comandos que estuvimos utilizando en la terminal se encuentran en una carpeta dentro de la raíz. Para saber la ubicaciones de estas, podemos usar el comando which
+
+\begin{lstlisting}[language=bash, style=terminal, caption={which: Mostrar ubicación de comando}]
+user@hostname:~$ which <comando>
+\end{lstlisting}
+
+\begin{ejer}
+    Encuentre la ubicación de los comandos:
+    \begin{itemize}
+        \item ls
+        \item cd
+        \item gcc
+    \end{itemize}
+    ¿Que poseen en común estas ubicaciones?
+\end{ejer}
+
+Si queremos encontrar cualquier archivo que contenga un string dentro de este, se puede utilizar locate
+
+\begin{lstlisting}[language=bash, style=terminal, caption={locate: Encontrar todos los documentos con un string en el}]
+user@hostname:~$ locate <string>
+\end{lstlisting}
+
+\section{Manejo de Archivos Avanzado}
+
+Por ultimo, aprenderemos formas interesantes de poder utilizar la terminal de linux para filtrar y modificar archivos.
+
+En los inputs de la funciones podemos usar los caracteres wildcards. Estos permiten indicar como parámetros mas que un simple string
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{5.5cm}|p{4.5cm}|}
+        \hline
+        \textbf{Wildcard} & \textbf{¿Que hace?} & \textbf{Ejemplo} \\
+        \hline
+        * & Coincide con cualquier elemento & \texttt{V*} indica todas las palabras que empiezan con V. \\
+        \hline
+        ? & Coincide con cualquier elemento de un caracter unicamente & \texttt{V?} coincide con \texttt{VA} o \texttt{V1}, pero no con \texttt{VAA} \\
+        \hline
+        [] & Coincide con cualquier elemento dentro de este & \texttt{x[ABC]} coincide con \texttt{xA}, \texttt{xB} y \texttt{xC}\\
+        \hline
+        [-] & Coincide con cualquier elementro dentro del rango indicado & ´x[1-3]´ coincide con \texttt{x1}, \texttt{x2} y \texttt{x3}. \\
+        \hline
+    \end{tabular}
+    \caption{Listado de Wildcards}
+\end{table}
+
+Estas wildcards podemos utilizarlas dentro de cualquier parámetro de los que utilizamos previamente.
+
+\begin{ejer}
+    En la carpeta `code` (copiada previamente en falso-directorio) contiene varios códigos de distintos lenguajes. Utilice el comando \texttt{ls} para mostrar por pantalla todos los códigos que estén escritos en C.
+
+    Pista: Puede utilizar el comando \texttt{ls <patron>} para filtrar los resultados del \texttt{ls}
+\end{ejer}
+
+
+El comando pipe permite que el output de un comando sea entregado para otro.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={pipeline: Encadenar un output}]
+user@hostname:~$ <command-1> | <command-2>
+\end{lstlisting}
+
+En este caso, ´comando-2´ recibiria el output de comando 1.
+
+Para ejemplificarlo, usaremos otro comando conocido como ´grep´. Este permite buscar archivos o texto que cumpla con un patron en especifico.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={grep: Filtrar por patron}]
+user@hostname:~$ grep <patron> <directorio>
+\end{lstlisting}
+
+Por ejemplo, el comando...
+
+\begin{lstlisting}[language=bash, style=terminal, caption={grep: Filtrar lineas que contengan un numero}]
+user@hostname:~$ grep "[0-9]" text.txt
+\end{lstlisting}
+
+Filtraria todas las lineas de .txt que incluyan al menos un numero en ellas.
+
+\begin{ejer}
+    Realice el mismo filtrado que el ejercicio anterior, pero ahora utilice una \texttt{pípeline} para juntar el resultado de \texttt{ls} junto a \texttt{grep}.
+\end{ejer}
+
+Por ultimo, enseñaremos el comando sed, que permite cambiar texto mediante un patron.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={sed: Transformar texto de un patron}]
+user@hostname:~$ sed s/<patron>/<reemplazo>/g <archivo>
+\end{lstlisting}
+
+En este comando, $s$ indica que (s)ubstituya lo que coincida con el reemplazo, con $g$ indicando que reemplaze todas las partes del texto que el patron coincida. Todo esto sera en el texto del archivo o del input que se le entregue.
+
+Si queremos que estos cambios sean modificados dentro del archivo, asegurese de incluir la flag \texttt{-i}.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={sed: Transformar texto de un patron, modificando el archivo actual}]
+user@hostname:~$ sed -i s/<patron>/<reemplazo>/g <archivo>
+\end{lstlisting}
+
+\begin{ejer}
+    Se tiene un texto llamado \texttt{codigos.txt} que incluye variaciones de distintos codigos. Se dio cuenta que este txt tiene un error, dado que todos los codigos de python tiene el termino \texttt{.python} en vez de \texttt{.py}. Realice un comando que le permita arreglar este error.
+\end{ejer}
+
+Finalmente, realicemos un ejercicio que junta varios comandos de control de archivos.
+
+\begin{ejer}
+   A su amigo y usted le pidieron mostrar por pantalla todos los archivos los cuales sean ids. Para esto, se les entrego una carpeta con varios archivos, en los cuales tendran que filtrar aquellos que tengan por nombre \texttt{id-<numero>.txt}, en donde <numero> indica cualquier combinación numerica.
+
+   Ademas, por una extraña razon, su amigo Mista le tiene miedo al numero 4, por lo que debe de modificar cualquier numero 4 por la letra A para que asi su amigo pueda verlo con tranquilidad.
+
+   Realice un comando en la terminal que permita esta acción
+
+   Pista: Utilice los comandos \texttt{ls}, \texttt{grep} y \texttt{sed} para este proposito
+\end{ejer}
+
+\section{Ejercicios Adicionales}
+
+\begin{ejer}
+    Un amigo suyo le entrego una carpeta con canciones de su banda favorita, Hesse Kassel, tanto en formato mp4 como mp3. Usted desea unicamente los archivos mp3. Haga un comando que remueva todos los archivos .mp4 de la carpeta actual.
+
+    Pista: Puede hacer algo parecido a \texttt{ls <patron>} para decirle a \texttt{rm} que remueve aquellos que coincidan con un patron.
+\end{ejer}
+
+\begin{ejer}
+    El comando ps aux retorna una lista con todos los procesos que se ejecutan en el momento. Si se sabe que todo proceso que usa la cpu contiene 'cpu' en el nombre, utilize el comando ps para mostrar en la terminal todos los procesos ejecutandose en la cpu.
+
+    Pista: Utilice la \texttt{pipeline} para este proposito.
+\end{ejer}
+
+\begin{ejer}
+    En la carpeta downloads se instalo un ejecutable de un compilador llamado typst. Usted quiere que este ejecutable pueda ejecutarse desde cualquier ubicación usando la terminal. Escriba un comando que realice esto, asumiendo que se encuentra en la misma ubicación que el ejecutable.
+
+    Pista: Analice los resultados del ejercicio 7 para poder resolver este ejercicio.
+\end{ejer}
+
+\begin{ejer}
+    Usted investigando aprendio un comando muy util llamado \texttt{xargs}. Este permite transformar cualquier linea de texto y entregar por input como separado cualquier elemento que este con un espacio entre medio. Por ejemplo, \texttt{xargs "x1 x2"} retornaria \texttt{x1} y \texttt{x2} por separado.
+
+    Utilice este comando para mover de una carpeta todos los archivos que tengan el formato \texttt{.c}.
+\end{ejer}
+
+\begin{ejer}
+    Benjito es un compañero suyo que le gusta mucho hacer documentos en latex, pero siempre está revisando documentos antiguos para recordar la configuración que le gusta para cada tipo de documento. Benjito se aburrió de copiar manualmente y se le ocurrió hacer una template que la guardará en ~/templates.
+    
+    Escriba un comando que le permita a benjito poder copiar el contenido de template en una carpeta con nombre personalizado
+\end{ejer}
+
+\begin{ejer}
+    Usted esta realizando un codigo en C++ que utiliza archivos header (.h). Leyendo aprendio que habia una mejor forma para indicar los headers de C++, la cual es .hpp, ya que .h es para indicar headers de C. Realice un comando en la terminal que le permita solucionar su error, asumiendo que todos los .h se encuentran en la carpeta actual.
+
+    Pista: Investigue el comando \texttt{rename} para cumplir este proposito.
+\end{ejer}
+
+\begin{ejer}
+    Un compañero suyo le paso casos de prueba para un codigo que estaban haciendo. En este, tiene que verificar las rimas de los versos de un .txt llamado estrofa.txt. Sin embargo, se dio cuenta que su compañero escribio todas las ´a´ como ´4´, haciendo que palabras como armadura terminen siendo 4rm4dur4. Realice desde la terminal un comando que arregle este error de tipeo.
+\end{ejer}

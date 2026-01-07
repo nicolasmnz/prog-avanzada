@@ -1,0 +1,75 @@
+%% Formato tomado del profesor Horst Von Brand
+\usepackage{etoolbox}
+\usepackage{babel}
+\usepackage{fourier}
+\usepackage{csquotes}
+\usepackage[colorlinks, urlcolor=blue]{hyperref}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{graphicx} 
+\usepackage{chngcntr}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\tcbuselibrary{skins, breakable}
+\usepackage{etoolbox}
+
+%% Mio
+\usepackage{geometry}
+\geometry{margin=3.0cm}
+
+%% Incluir aqui para codigo en caso de ser necesario
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{textcomp}
+
+%% Estilo C de https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+\lstdefinestyle{customc}{
+    backgroundcolor=\color{black!5},
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    frame=L,
+    xleftmargin=\parindent,
+    language=C,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{purple!85},
+}
+
+%% Estilo Terminal, en desarrollo
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{black!100},
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    frame=L,
+    xleftmargin=\parindent,
+    language=bash,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily\color{white},
+    keywordstyle=\bfseries\color{white},
+    commentstyle=\itshape\color{white},
+    identifierstyle=\color{white},
+    stringstyle=\color{purple!85},
+}
+
+%% Cuadrado
+\newenvironment{boxed}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+%% ejercicio
+\newcounter{ejercicio}[chapter]
+\newtheorem{ejer}[ejercicio]{Ejercicio}
+\renewcommand{\theejer}{\thechapter.\thesection.\thesubsection.\arabic{ejercicio}}
+
+\BeforeBeginEnvironment{ejer}{\begin{boxed}}
+\AfterEndEnvironment{ejer}{\end{boxed}}

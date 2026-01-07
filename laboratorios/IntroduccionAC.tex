@@ -1,0 +1,150 @@
+En Programación Avanzada, vemos un nuevo lenguaje de programación conocido como C. Trae muchas diferences que lo visto en Python, por lo que es importante conocerlas antes de usarlo.
+
+\section{Compilación}
+
+A diferencia de python, C es un lenguaje compilado. Esto implica que no podemos andar el codigo como tal. Para esto se usa compiladores. 
+
+En el curso se vera el compilador por defecto de C que es GCC. La idea de esta introducción es ver como compilar un programa de C para ser ejecutable. 
+
+Los archivos ejectutables en C tiene el formato `nombre.c`. Este archivo ha de convertirse en un ejecutable para que la computadora lo pueda andar. Para eso, en la terminal, utilizamos el siguiente comando...
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Compilar programa basico de C con GCC}]
+user@hostname:~$ gcc nombre.c
+\end{lstlisting}
+
+Esto hara que en la carpeta donde estamos se cree un ejecutable de la forma `a.out`. Para ejecutar el programa, en la terminal, se utiliza el comando...
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Ejecutar programa en la terminal}]
+user@hostname:~$ ./a.out
+\end{lstlisting}
+
+Si se quiere declarar un nombre de ejecutable distinto a `a.out`, se debe de utilizar la opcion -o dentrode los parametros de gcc. `-o` indica nombre de output, el cual corresponde a la siguiente palabras tras `-o`. Un ejemplo de compilación con nombre distinto al default es...
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Compilar programa en GCC con nombre especifico}]
+user@hostname:~$ gcc -o program nombre.c
+\end{lstlisting}
+
+Con estas simples opciones, podremos ser capaces de compilar codigo en C y ejecutarlo.
+
+\section{Primer programa en C: Hello World}
+
+Una recurrencia en el mundo de la informatica es desarrollar un programa que imprima `Hello World` para aprender un nuevo lenguaje de programación. En esta sección, se realizara esta actividad para entender la syntaxis de C a grandes rasgos.
+
+En C, el programa HelloWorld se desarrolla de la siguiente forma:
+
+\begin{lstlisting}[language=c,style=customc,caption={Hello World en C}]
+#include <stdio.h>
+int main() {
+   printf("Hello, World!");
+   return 0;
+}
+\end{lstlisting}
+
+Se puede ver muy complicado a primera vista, pero no es mas que funciones basicas de C. 
+
+\begin{itemize}
+    \item \textbf{\#include <stidio.h>}: Libreria que permite recibir inputs y outputs. El nombre de stidio.h es "standard(std) input(i) output(o)". Debido a que lo importamos, se nos permitira usar funciones que esta libreria alberga, como `printf`
+    
+    \item \textbf{int main()}: Función principal del programa. Esta función sera la primera al andar cuando se ejecute el programa, independiente de otras funciones que puedan existir. Su existencia es necesaria para el funcionamiento de los programas en C. 
+
+    El int previo al nombre de la función indica que sera lo que retorne tras ejecutarse, en este caso un numero int. Los tipos se veran mas adelante.
+
+    Lo que ejecutara la función es lo que se encuentra delimitado mediante los corchetes.
+    
+    \item \textbf{printf("Hello, World!");}: Muestra (o imprime) por pantalla el mensaje "Hello World". Función importada desde stidio.
+    
+    printf sera la principal encargada de mostrar mensajes por pantalla. Tiene mas opciones, que se veran en profundidad mas adelante.
+
+    Mencionar como al final de la linea esta el ;. El fin de una linea es indicado mediante ;.
+    
+    \item \textbf{return 0;}:  Retorno de la función. Para main, retornar 0 significa indicar que la función fue completada con exito.
+    
+\end{itemize}
+
+\begin{ejer}
+    Cree usted su propio programa que realice un Hello World con el nombre `helloworld.c`. Tras esto, compilelo como ejecutable con el nombre `helloworld.exe`.
+\end{ejer}
+
+\section{Tipado Estatico}
+
+Hemos visto como la funcion de `main()` dentro del codigo tiene un posee un `int` asociado a el. Esto es porque estamos declarando que valor va a retornar la función.
+
+Previamente, en Python, las funciones no debian de indicar que retorna, lo que se conoce como Tipado Dinamico. A diferencia de Python, en C debemos declarar que tipo de datos va a retornar la función. Esto se conoce como Tipado Estatico. C es un lenguaje con Tipado Estatico.
+
+Esto no solo se cumple para las funciones, si no que tambien debemos de declarar que tipo de valor guardan las variables. Los tipos basicos de C son:
+
+\begin{itemize}
+    \item \textbf{int: } Valor numerico que guarda numeros enteros.
+    \item \textbf{char: } Contiene unicamente un caracter
+    \item \textbf{float: } Valor numerico que guarda numeros reales.
+\end{itemize}
+
+C realiza Tipado Estatico para poder saber la cantidad de memoria que sera utilizado por una variable o retorno de esta. Ademas, operadores entre distintos tipos de valores no son permitidos. 
+
+Para ver la diferencia de memoria entre los tipos de datos, realizaremos un ejercicio que necesita saber de los siguiente operadores.
+
+\begin{lstlisting}[language=c,style=customc,caption={Operador sizeof}]
+
+#include <studio.h>
+int main(){
+    int x; // Variable con tipo de dato int
+    printf("Cantidad de memoria utilizada: %d", sizeof(x));
+}
+
+\end{lstlisting}
+
+En este ejemplo, el operador sizeof entrega cuanta memoria utiliza la variable x.
+
+\begin{ejer}
+    Cree un programa en C llamado `SizeofTypes` que imprimia por pantalla los datos de tipo `int`. `float`, y `double`. Comparelos.
+\end{ejer}
+
+Para imprimir numeros por pantalla, use el comando `printf("Cantidad de memoria utilizada: \%d", sizeof(x));`, en donde x corresponde a las variables con cada uno de los tipos. No se preocupe del funcionamiento de esta funcion, se explicara en la siguiente sección.
+
+\section{Input y Output}
+
+En la sección anterior vimos un nuevo uso de la función `printf()`, que permitia mostrar por pantalla el valor retornado por la operación `sizeof`. Ahora explicaremos en mas detalle el input y output.
+
+En C, para realizar input se utiliza el comando `scanf`.
+
+\begin{lstlisting}[language=c,style=customc,caption={Función scanf (Input en C)}]
+
+#include <studio.h>
+int main(){
+    int x; // Variable con tipo de dato int
+    scanf("%d", &x);
+}
+\end{lstlisting}
+
+La función scanf toma un input desde la terminal y se lo pasa a una variable.
+\begin{itemize}
+    \item El primer parametro de la función, \" \%d \" , se le conoce como un especificador de formato. Estos especificadores indican el tipo de dato que se va a recibir.
+    \item El segundo parametro corresponde a la variable en donde guardaremos el tipo de dato. \& indica su dirección en memoria, que se explicara en mas detalle mas adelante.
+\end{itemize}
+
+\begin{ejer}
+    Cree un programa en C llamado `SumaNumeros` que reciba por pantalla dos numeros,  y que se muestre por pantalla el resultado de sumarlos. Considere que siempre se recibira un numero entero.
+\end{ejer}
+
+Los especificadores de formato permiten identificar el tipo de dato para mostrarlo correctamente en las funciones de `scanf` y `printf`. Los especificadores de formato son los siguientes:
+
+\begin{lstlisting}[language=c,style=customc,caption={Especificadores de formato para scanf}]
+
+#include <studio.h>
+int main(){
+
+    // ... Se declaran las variables previamente
+    
+    scanf("%d", &a); // Input del tipo digito
+    scanf("%c", &b); // Input del tipo caracter
+    scanf("%s", &c); // Input del tipo string
+    scanf("%p", &d); // Input del tipo puntero
+    scanf("%l", &e); // Input del tipo unsigned long 
+}
+\end{lstlisting}
+
+Estos especificadores de formato tambien pueden usarse para mostrar por pantalla usando `printf`.
+
+\begin{ejer}
+    Cree un programa en C llamado `esPar`, el cual recibe un numero por pantalla, el cual muestre un caracter por pantalla, `T` en caso de ser par, y `F` en caso de no serlo. (Pista: Utilice el operador \%, aprendido de python, para este ejercicio).
+\end{ejer}

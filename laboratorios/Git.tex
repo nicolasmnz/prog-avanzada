@@ -1,0 +1,245 @@
+
+
+Git es un sistema de control de versiones open-source que nos permite trabajar con historial de cambios dentro de repositorios personales o colaborativos. La mayoria de la gente conoce mas GitHub que Git, siendo que en estricto rigor, github nace de git. 
+
+En este laboratorio aprenderemos el uso de git basico que permita aprender a utilizar los repositorios de una forma eficiente y productiva. Git no sera solo contenido de curso, si no que probablemente algo que les funcionara para toda su carrera.
+
+Para esta sección, recomendamos saber utilizar al menos los comandos de terminal, ya que este laboratorio sera desarrollado la mayoría desde esta. Ademas, notar que los ejercicios de esta sección estan mas orientados a que sepan como utilizar los comandos y tengan un repositorio al final.
+
+Si requiere de otros apoyos, puede apoyarse en las siguientes paginas para un aprendizaje de git
+\begin{itemize}
+    \item \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}
+\end{itemize}
+
+\section{Git}
+
+Definimos \textbf{repositorio} como el archivo o carpeta en donde se encuentra nuestro trabajo con versiones de git. Para inicializar una carpeta como repositorio, utilizamos el siguiente comando en la terminal.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git init: Iniciar repositorio Git}]
+user@hostname:~$ git init
+\end{lstlisting}
+
+Este nos transformara la carpeta actual en un repositorio. Esto se hace con un carpeta .git que contendra todos los cambios y comandos necesarios.
+
+\begin{ejer}
+    Cree una carpeta llamada \texttt{verdadero-repositorio} sin ningun documento, e inicie el repositorio.
+\end{ejer}
+
+Para agregar cambios a nuestro repositorio, se necesita primero que existan cambios en el. Un archivo comun dentro de los repositorios es aquel conocido como \textbf{README.md}, que contiene información basica. Si ahora creamos el archivo dentro de la carpeta, necesitaremos decirle a git que detecte los cambios, y podemos realizarlo con el siguiente comando.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git add: Agregar todos los cambios detectados}]
+user@hostname:~$ git add .
+\end{lstlisting}
+
+Con este comando le decimos a git que detecte todos los cambios realizados. Si se quiere especificar algun cambio, se puede cambiar el . por el archivo que desea agregar a la lista de cambios
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git add: Agregar archivo especifico a la lista de cambios}]
+user@hostname:~$ git add <archivo>
+\end{lstlisting}
+
+Dado que tenemos la lista de cambios, es momento de subirla al repositorio. Esto se le conoce como \textbf{Commit}, y se podria definir como un pantallazo del sistema. Cada commit dentro de git es una copia del sistema en el estado anterior mas los cambios agregados mediante \texttt{git add}. Para realizar el commit, utilice el comando
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git commit: Guardar cambios en repositorio}]
+user@hostname:~$ git commit
+\end{lstlisting}
+
+Se recomienda agregar un mensaje que contenga los cambios del commit para poder verlo a futuro. Para agregarle un mensaje al commit, agregue la flag -m 
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git commit: Guardar cambios en repositorio con mensaje}]
+user@hostname:~$ git commit -m "<mensaje>"
+\end{lstlisting}
+
+\begin{ejer}
+    Cree en la carpeta actual un archivo \texttt{README.md} que contenga el titulo \texttt{\#Verdadero-Repostiorio} y hagale un commit para que este guardado.
+\end{ejer}
+
+Con esto, podremos realizar todos los guardados dentro de git. En caso de necesitar volver para atras, dependera del tipo de situación que nos encontremos.
+
+\begin{itemize}
+    \item En el caso de que hicimos un cambio a la lista de cambios pero nos arrepentimos de esto, podemos usar el comando \texttt{git restore}
+
+    \begin{lstlisting}[language=bash, style=terminal, caption={git restore: Quitar cambios añadidos a la lista}]
+    user@hostname:~$ git restore --staged <archivo>
+    \end{lstlisting}
+
+    \item En el caso de que queremos volver a versiones anteriores del repositorio (o sea, volver a otros commits) se necesitara ver otra sección dedicada a esto.
+\end{itemize}
+
+\section{Git Branches}
+
+Una interesante caracteristica de Git es las \textbf{Branches}, estas permiten separar el trabajo entre varias ramas las cuales contendran sus propios archivos. 
+
+Actualmente, al iniciar el repositorio, se creo en la branch \texttt{master} o \texttt{main}. Esta branch es la principal del repositorio. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/Branch Main.png}
+    \caption{Branch Main}
+\end{figure}
+
+En la imagen, C0 indica el commit inicial al realizar un \texttt{git init}, mientras que C1 es el commit en donde agregamos el \texttt{README.md}. El asterisco indica en el commit que nos encontramos, el cual se le conoce como \texttt{HEAD}.
+
+Cuando creemos una branch, esta hara una copia del estado actual del repositorio. Para crear una branch, utilice el comando \texttt{git branch}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git branch: Crear una nueva branch}]
+    user@hostname:~$ git branch <nombre>
+\end{lstlisting}
+
+Este comando creara la branch desde el mismo commit en la que se encuentra main.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/new_branch.png}
+    \caption{Nueva Branch: Feature}
+\end{figure}
+
+Ahora, tendremos dos ramas que iran avanzando de manera separada. Todos los commits hechos en la branch \texttt{feature} no se veran en \texttt{main}.
+
+Para moverse hacia la nueva branch, utilice el comando \texttt{checkout}.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git checkout: Moverse a una nueva branch}]
+    user@hostname:~$ git checkout <nombre>
+\end{lstlisting}
+
+\begin{ejer}
+    En \texttt{verdadero-repositorio}, cree una branch llamada \texttt{feature}. Cambiese a la nueva branch y haga un commit que incluya un codigo en C que imprima Hola mundo. Ademas, en la branch \texttt{main}, haga un commit que cambie el archivo \texttt{README.md} que incluya su nombre y rol.
+\end{ejer}
+
+Deberia quedarse la siguiente estructura
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/branches.png}
+    \caption{Resultado del ejercicio 3}
+\end{figure}
+
+Digamos que ahora queremos juntar los cambios realizados en la branch \texttt{feature} hacia la branch \texttt{main}. Para esto, tenemos dos metodos distintos.
+
+\textbf{Git Merge} permite hacer un commit que incluya las diferencias entre el commit de la branch actual, el commit de la branch de destino, y el commit desde que se separaron. Esto se le conoce como \textbf{Merge commit}. 
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git merge: Fusionar la branch actual con otra branch}]
+    user@hostname:~$ git merge <branch>
+\end{lstlisting}
+
+(Notar que \texttt{git merge} hace el merge hacia la branch actual, o sea, en el comando agregamos que branch queremos fusionar hacia la actual).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/merge.png}
+    \caption{Resultado de git merge}
+\end{figure}
+
+\textbf{Git Rebase}, a diferencia de merge, tomara todos los commits hechos desde que se separo la branch, y hara que estos se hagan commit en la branch seleccionada. Esto hace que parezca que hubo un avance lineal, a diferencia de que dos branches se junten.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git rebase: Hacer rebase de la branch actual hacia otra}]
+    user@hostname:~$ git rebase <branch-destino>
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/rebase.png}
+    \caption{Resultado de git rebase}
+\end{figure}
+
+Cualquiera de estas dos opciones son validas, y llegaran a un resultado equivalente.
+
+\begin{ejer}
+    En \texttt{verdadero-repositorio}, junte las dos branches creadas usando el metodo de su preferencia.
+\end{ejer}
+
+Finalmente, podemos eliminar las branches de nuestro repositorio. Para esto, usamos la flag \textbf{-d}. Si quiere evitarse un mensaje que indique que hay cambios sin subir, utilice la flag \textbf{-D}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git branch: Borrar branch}]
+    user@hostname:~$ git branch -d <branch>
+\end{lstlisting}
+
+\begin{ejer}
+    En \texttt{verdadero-repositorio}, elimine la branch de feature.
+\end{ejer}
+
+Con estos comandos, habras aprendido lo basico para realizar un repositorio
+
+\section{Resolución de Problemas}
+
+En el mejor de los casos, no habra errores que arreglar dentro de estos commits. En la practica es posible que ocurran momentos en donde haya problemas entre versiones. Los problemas mas comunes que encontramos varian, pero aqui denotamos la solución a varios de ellos.
+
+\subsection{Ver un commit anterior}
+
+Consideremos un estado de un repositorio en el que tenemos tres commits, \texttt{C1}, \texttt{C2} y \texttt{C3}. \texttt{HEAD} se encuentra en C3. 
+
+Digamos que queremos volver a C1 debido que habia una caracteristica que queriamos revisar. Para volver a un commit anterior para observarlo puede usar el comando \textbf{git switch}.
+
+Primero necesitamos saber el id de los commits, que se le conoce como hash. Puede saber esta informacióin mediante \textbf{git log}.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git log: Ver log del repositorio}]
+    user@hostname:~$ git log
+\end{lstlisting}
+
+Teniendo el id de este commit, podemos ver el commit utilizando este id.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git switch: Cambiar a commit}]
+    user@hostname:~$ git switch <hash-commit>
+\end{lstlisting}
+
+Esto hara que nuestra ubicación actual (o sea, el \texttt{HEAD}) se mueva hacia otra posición. Esto nos permite ver el estado de aquel commit. Para volver al commit principal de la branch actual, utilice el siguiente comando.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git switch: Volver al ultimo commit de la branch}]
+    user@hostname:~$ git switch <branch>
+\end{lstlisting}
+
+\subsection{Rehacer un commit anterior}
+
+Digamos estamos en el commit \texttt{C3}, y queremos volver al estado del commit C2. Para esto, tenemos varios comandos. Uno de ellos es \textbf{git revert}, que permite quitar los cambios realizados en un commit. Esto lo hace creando un commit nuevo que borra el commit indicado.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git revert: Quitar modificaciones de un commit}]
+    user@hostname:~$ git revert <hash-commit>
+\end{lstlisting}
+
+Otra manera de volver a un estado anterior es utilizando \textbf{git reset}. Este comando, dependiendo de la flag, puede modificar el historial del repositorio, por lo que no lo recomendamos. Puede investigar sobre el usando el comando man.
+
+\subsection{Merge Conflicts}
+
+Aveces cuando juntemos dos branches de repositorios, estas pueden contener archivos que contengan distintas versiones entre si. Esto se conoce como un \texttt{MERGE CONFLICT}.
+
+Dado que le aparezca merge conflict, puede utilizar el comando \textbf{git status} para saber el estado actual.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git revert: Quitar modificaciones de un commit}]
+    user@hostname:~$ git status 
+\end{lstlisting}
+
+Aqui podremos ver el estado de error. Simulemos un caso.
+
+\begin{ejer}
+    Cree un repositorio en el cual primero haga el commit de un \texttt{README.md}. Despues haga una branch llamada \texttt{Conflict} y agrege como titulo al readme \texttt{\#Conflict}. En su branch principal, agregue de titulo \texttt{\#Main}. Haga un merge y observe el estado usando git status.
+\end{ejer}
+
+En el archivo conflictivo que le aparezca en git status, vera que se escribiran formatos de la siguiente manera...
+
+\begin{lstlisting}[language=bash]
+    <<<<<<<<<<HEAD
+    #Main
+    ==========
+    #Conflict
+    >>>>>>>>> feature
+\end{lstlisting}
+
+En este caso, el conflicto esta en la primera linea, en donde la branch actual toma valor de Main, y en la branch feature toma valor de conflict. Para solucionarlo, debe borrar tanto las lineas con $<<<$ y $>>>$, como la linea con $===$, y debe escoger entre cual de las dos soluciones se queda. Tambien puede hacer una nueva, si lo ve necesario.
+
+\begin{ejer}
+    Arregle el error del ejercicio anterior. Hagale commit y subalo.
+\end{ejer}
+
+\section{Git Remoto}
+
+Finalmente, veremos el trabajo colaborativo de git. Todo este formato de versiones podemos subirlo a otras aplicaciones online que mantengan una copia del estado.
+
+Miremos por ejemplo Github, la cual es la mayormente conocida dentro de este ambito. 
+
+\section{Commits Convencionales}
+
+Ya se tiene conocimiento de los commits. Sin embargo, entregare aqui varios ejemplos de como usar los commits para que nos apoyen mas que hacernos perder tiempo.
+
+\begin{enumerate}
+    \item Intenta siempre hacer commits que indiquen bien que hacen. Por ejemplo, puede utilizar \href{https://www.conventionalcommits.org/en/v1.0.0/}{Conventional Commits}
+    \item Intente hacer branches que no duren mucho para evitar cambios fuertes entre main y branch. Haga branches enfocadas en una caracteristica especifica, hagale merge, y borre la branch.
+\end{enumerate}
