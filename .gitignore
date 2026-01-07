@@ -1,2 +1,3 @@
 # Ignorar todos los contenidos que salen al compilar el documento
 main.*
+!main.tex
