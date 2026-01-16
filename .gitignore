@@ -1,4 +1,8 @@
-# Ignorar todos los contenidos que salen al compilar el documento
+# Ignorar todos los contenidos que salen al compilar el documento principal
 main.*
 q.log
 !main.tex
+
+# Ignorar todos los contenidos que salen al compilar los documentos modulares
+modular/*
+!modular/[a-zA-Z]*.tex
