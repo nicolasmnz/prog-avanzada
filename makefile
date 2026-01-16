@@ -1,3 +1,5 @@
+MODULAR_DIR = modular
+
 help: ## Comando de ayuda 
 	@echo ""
 	@echo "Regla			Explicación"
@@ -5,7 +7,12 @@ help: ## Comando de ayuda
 	@awk 'BEGIN {FS = ":.*##"} /^[a-zA-Z0-9_-]+:.*##/ {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 	@echo ""
 
-compile: ## Compila el documento en pdf-latex
+compile-main: ## Compila el documento principal en pdf-latex
 	@echo "[+] Compilando..."
 	pdflatex main.tex ;
 	@echo "[+] Compilación Terminada"
+
+compile-modules: ## Compila documentos modulares (Posible Mejora: Automatizar segun archivos en modular)
+	@echo "[+] Compilando (Modular)"
+	pdflatex -output-directory=$(MODULAR_DIR) $(MODULAR_DIR)/C.tex
+	@echo "[+] Modulos Compilados"
