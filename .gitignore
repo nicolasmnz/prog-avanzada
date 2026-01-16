@@ -6,3 +6,6 @@ q.log
 # Ignorar todos los contenidos que salen al compilar los documentos modulares
 modular/*
 !modular/[a-zA-Z]*.tex
+
+# Ignorar output de codigo
+code/a.out
