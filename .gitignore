@@ -8,4 +8,4 @@ modular/*
 !modular/[a-zA-Z]*.tex
 
 # Ignorar output de codigo
-code/a.out
+code/*/a.out
