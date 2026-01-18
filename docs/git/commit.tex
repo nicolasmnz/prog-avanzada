@@ -1,0 +1,19 @@
+\subsection{commits}
+
+Inicialmente nuestro repositorio se encuentra vacio. Todos los elementos que vayas creando van a mantenerse, pero el repositorio no contendra estos cambios hasta que le digas manualmente que cambios has realizado, y cuales quieres guardar.
+
+Un archivo comun dentro de la mayoria de repositorios es aquel conocido como \textbf{README.md}, que contendra información basica del repostiorio para gente que quiera utilizarlo.
+
+Tras crear el archivo, debemos decirle a git que tenemos la intención de agregar el archivo. Para hacer esto, podemos usar el comando \texttt{git add}.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git add: Agregar un archivo especifico a la lista de cambios}]
+	user@hostname:~\$ git add <filename>
+\end{lstlisting}
+
+De este modo, git sabra que queremos agregar el README como un cambio. Este cambio aun no se encuentra confirmado, pero en un estado de espera. Puedes agregar mas cambios que se suban usando el mismo comando. Si quieres agregar todos los cambios que han ocurrido en el repostiorio, se puede \texttt{git add} con una flag distinta.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git add: Agregar todos los cambios}]
+	user@hostname:~\$ git add .
+\end{lstlisting}
+
+

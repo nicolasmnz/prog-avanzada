@@ -1,29 +1,34 @@
+%% Git es un sistema de control de versiones open-source que nos permite trabajar con historial de cambios dentro de repositorios personales o colaborativos. La mayoria de la gente conoce mas GitHub que Git, siendo que en estricto rigor, github nace de git. 
 
+%$En este laboratorio aprenderemos el uso de git basico que permita aprender a utilizar los repositorios de una forma eficiente y productiva. Git no sera solo contenido de curso, si no que probablemente algo que les funcionara para toda su carrera.
 
-Git es un sistema de control de versiones open-source que nos permite trabajar con historial de cambios dentro de repositorios personales o colaborativos. La mayoria de la gente conoce mas GitHub que Git, siendo que en estricto rigor, github nace de git. 
+%% Para esta sección, recomendamos saber utilizar al menos los comandos de terminal, ya que este laboratorio sera desarrollado la mayoría desde esta. Ademas, notar que los ejercicios de esta sección estan mas orientados a que sepan como utilizar los comandos y tengan un repositorio al final.
 
-En este laboratorio aprenderemos el uso de git basico que permita aprender a utilizar los repositorios de una forma eficiente y productiva. Git no sera solo contenido de curso, si no que probablemente algo que les funcionara para toda su carrera.
+Git es un sistema de control de versiones open-source diseñado para poder gestionar proyectos de codigo con velocidad y eficiencia.
 
-Para esta sección, recomendamos saber utilizar al menos los comandos de terminal, ya que este laboratorio sera desarrollado la mayoría desde esta. Ademas, notar que los ejercicios de esta sección estan mas orientados a que sepan como utilizar los comandos y tengan un repositorio al final.
+Esta es una guia para poder controlar un repositorio de manera eficiente. Para esto, puedes leer esta guia o utilizar otros medios de aprendizaje que recomendamos en su sección respectiva.
 
-Si requiere de otros apoyos, puede apoyarse en las siguientes paginas para un aprendizaje de git
+Git es un sistema de control de versiones open-source diseñado para poder gestionar proyectos de codigo con velocidad y eficiencia.
+
+\section{Introducción a git}
+\input{introduction}
+
+\section{Commits}
+\input{commits}
+
+\section{Branches}
+\input{branches}
+
+\section{Git Remoto (Github)}
+\input{remote}
+
+\section{Fuentes y mas}
+
 \begin{itemize}
     \item \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}
 \end{itemize}
 
 \section{Git}
-
-Definimos \textbf{repositorio} como el archivo o carpeta en donde se encuentra nuestro trabajo con versiones de git. Para inicializar una carpeta como repositorio, utilizamos el siguiente comando en la terminal.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git init: Iniciar repositorio Git}]
-user@hostname:~$ git init
-\end{lstlisting}
-
-Este nos transformara la carpeta actual en un repositorio. Esto se hace con un carpeta .git que contendra todos los cambios y comandos necesarios.
-
-\begin{ejer}
-    Cree una carpeta llamada \texttt{verdadero-repositorio} sin ningun documento, e inicie el repositorio.
-\end{ejer}
 
 Para agregar cambios a nuestro repositorio, se necesita primero que existan cambios en el. Un archivo comun dentro de los repositorios es aquel conocido como \textbf{README.md}, que contiene información basica. Si ahora creamos el archivo dentro de la carpeta, necesitaremos decirle a git que detecte los cambios, y podemos realizarlo con el siguiente comando.
 
