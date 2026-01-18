@@ -1,6 +1,24 @@
 # prog-avanzada
 
 
+## Semantic Line Breaks
+Para ayudarse de los beneficios de Git, debemos ocupar esta guía de estilo.
+
+En lugar de escribir párrafos largos en una sola línea de código, se escribe una frase por línea.
+
+### Beneficios
+1. **Evita Conflictos de Fusión:** Git trabaja línea por línea. Si dos personas editan el mismo párrafo pero en distintas oraciones, Git podrá unir los cambios automáticamente.
+   
+2. **Revisiones más claras:** En un Pull Request, veremos exactamente qué oración cambió, en lugar de ver un párrafo entero resaltado en rojo.
+   
+3. **LaTeX lo permite:** Recuerda que LaTeX ignora los saltos de línea simples. Para crear un nuevo párrafo, simplemente deja una línea en blanco (doble salto).
+
+### Nota
+**Cuándo romper la línea:** 
+El punto seguido es el mejor lugar para dar un `Enter`, pero si una frase es muy larga, también puedes romperse en una coma."
+
+---
+
 ## Conventional Commits
 ### Estructura de los mensajes
 Se debe seguir el siguiente formato:
