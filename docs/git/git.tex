@@ -1,5 +1,6 @@
 %% Git es un sistema de control de versiones open-source que nos permite trabajar con historial de cambios dentro de repositorios personales o colaborativos. La mayoria de la gente conoce mas GitHub que Git, siendo que en estricto rigor, github nace de git. 
 
+
 %$En este laboratorio aprenderemos el uso de git basico que permita aprender a utilizar los repositorios de una forma eficiente y productiva. Git no sera solo contenido de curso, si no que probablemente algo que les funcionara para toda su carrera.
 
 %% Para esta sección, recomendamos saber utilizar al menos los comandos de terminal, ya que este laboratorio sera desarrollado la mayoría desde esta. Ademas, notar que los ejercicios de esta sección estan mas orientados a que sepan como utilizar los comandos y tengan un repositorio al final.
@@ -11,63 +12,21 @@ Esta es una guia para poder controlar un repositorio de manera eficiente. Para e
 Git es un sistema de control de versiones open-source diseñado para poder gestionar proyectos de codigo con velocidad y eficiencia.
 
 \section{Introducción a git}
-\input{introduction}
+\input{docs/git/introduction}
 
 \section{Commits}
-\input{commits}
+\input{docs/git/commit}
 
 \section{Branches}
-\input{branches}
+\input{docs/git/branches}
 
 \section{Git Remoto (Github)}
-\input{remote}
+\input{docs/git/remote}
 
 \section{Fuentes y mas}
 
 \begin{itemize}
     \item \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}
-\end{itemize}
-
-\section{Git}
-
-Para agregar cambios a nuestro repositorio, se necesita primero que existan cambios en el. Un archivo comun dentro de los repositorios es aquel conocido como \textbf{README.md}, que contiene información basica. Si ahora creamos el archivo dentro de la carpeta, necesitaremos decirle a git que detecte los cambios, y podemos realizarlo con el siguiente comando.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git add: Agregar todos los cambios detectados}]
-user@hostname:~$ git add .
-\end{lstlisting}
-
-Con este comando le decimos a git que detecte todos los cambios realizados. Si se quiere especificar algun cambio, se puede cambiar el . por el archivo que desea agregar a la lista de cambios
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git add: Agregar archivo especifico a la lista de cambios}]
-user@hostname:~$ git add <archivo>
-\end{lstlisting}
-
-Dado que tenemos la lista de cambios, es momento de subirla al repositorio. Esto se le conoce como \textbf{Commit}, y se podria definir como un pantallazo del sistema. Cada commit dentro de git es una copia del sistema en el estado anterior mas los cambios agregados mediante \texttt{git add}. Para realizar el commit, utilice el comando
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git commit: Guardar cambios en repositorio}]
-user@hostname:~$ git commit
-\end{lstlisting}
-
-Se recomienda agregar un mensaje que contenga los cambios del commit para poder verlo a futuro. Para agregarle un mensaje al commit, agregue la flag -m 
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git commit: Guardar cambios en repositorio con mensaje}]
-user@hostname:~$ git commit -m "<mensaje>"
-\end{lstlisting}
-
-\begin{ejer}
-    Cree en la carpeta actual un archivo \texttt{README.md} que contenga el titulo \texttt{\#Verdadero-Repostiorio} y hagale un commit para que este guardado.
-\end{ejer}
-
-Con esto, podremos realizar todos los guardados dentro de git. En caso de necesitar volver para atras, dependera del tipo de situación que nos encontremos.
-
-\begin{itemize}
-    \item En el caso de que hicimos un cambio a la lista de cambios pero nos arrepentimos de esto, podemos usar el comando \texttt{git restore}
-
-    \begin{lstlisting}[language=bash, style=terminal, caption={git restore: Quitar cambios añadidos a la lista}]
-    user@hostname:~$ git restore --staged <archivo>
-    \end{lstlisting}
-
-    \item En el caso de que queremos volver a versiones anteriores del repositorio (o sea, volver a otros commits) se necesitara ver otra sección dedicada a esto.
 \end{itemize}
 
 \section{Git Branches}
