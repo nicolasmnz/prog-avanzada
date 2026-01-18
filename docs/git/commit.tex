@@ -1,5 +1,3 @@
-\subsection{commits}
-
 Inicialmente nuestro repositorio se encuentra vacio. Todos los elementos que vayas creando van a mantenerse, pero el repositorio no contendra estos cambios hasta que le digas manualmente que cambios has realizado, y cuales quieres guardar.
 
 Un archivo comun dentro de la mayoria de repositorios es aquel conocido como \textbf{README.md}, que contendra información basica del repostiorio para gente que quiera utilizarlo.
@@ -16,4 +14,10 @@ De este modo, git sabra que queremos agregar el README como un cambio. Este camb
 	user@hostname:~\$ git add .
 \end{lstlisting}
 
+Cuando tengamos listo todos los cambios listos que queriamos subir agregados, se deben confirmar y subir al repositorio. Este proceso se le conoce como \textbf{commit}. Al hacer commit, git guardara los cambios realizados desde el anterior commit al que acabamos de realizar. Podriamos decir que cuando realizamos el comando de \texttt{git init} se produjo un commit inicial del sistema, en donde agrega todos los archivos iniciales como cambios. Para hacer \texttt{git commit}, utilizar el comando en la terminal.
 
+\begin{lstlisting}[language=bash, style=terminal, caption={git commit: Subir cambios al repositorio}]
+	user@hostname:~\$ git commit
+\end{lstlisting}
+
+Cuando se utilize el comando se abrira una ventana en donde mostrara los cambios realizados. En la parte superior se puede escribir un mensaje que describa los cambios realizados. Este mensaje puede ser cualquiera, pero recomendamos utilizar un estandar.
