@@ -14,6 +14,12 @@ De este modo, git sabra que queremos agregar el README como un cambio. Este camb
 	user@hostname:~\$ git add .
 \end{lstlisting}
 
+Para ver el estado de que archivos han cambiado, cuales cambios se han agregado a la lista de cambios, o los conflictos (contenido que se vera despues), se utiliza el comando \texttt{git status}, que indica el estado actual de los archivos y lista de cambios
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git status: Ver estado de los cambios}]
+	user@hostname:~\$ git status
+\end{lstlisting}
+
 Cuando tengamos listo todos los cambios listos que queriamos subir agregados, se deben confirmar y subir al repositorio. Este proceso se le conoce como \textbf{commit}. Al hacer commit, git guardara los cambios realizados desde el anterior commit al que acabamos de realizar. Podriamos decir que cuando realizamos el comando de \texttt{git init} se produjo un commit inicial del sistema, en donde agrega todos los archivos iniciales como cambios. Para hacer \texttt{git commit}, utilizar el comando en la terminal.
 
 \begin{lstlisting}[language=bash, style=terminal, caption={git commit: Subir cambios al repositorio}]

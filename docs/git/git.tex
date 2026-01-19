@@ -17,6 +17,9 @@ Esta es una guia para poder controlar un repositorio de manera eficiente. Para e
 \section{Branches}
 \input{docs/git/branches}
 
+\section{Resolución de Conflictos}
+\input{docs/git/conflictos}
+
 \section{Git Remoto (Github)}
 \input{docs/git/remote}
 
@@ -25,76 +28,6 @@ Esta es una guia para poder controlar un repositorio de manera eficiente. Para e
 \begin{itemize}
 	\item \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}
 \end{itemize}
-
-\section{Resolución de Problemas}
-
-En el mejor de los casos, no habra errores que arreglar dentro de estos commits. En la practica es posible que ocurran momentos en donde haya problemas entre versiones. Los problemas mas comunes que encontramos varian, pero aqui denotamos la solución a varios de ellos.
-
-\subsection{Ver un commit anterior}
-
-Consideremos un estado de un repositorio en el que tenemos tres commits, \texttt{C1}, \texttt{C2} y \texttt{C3}. \texttt{HEAD} se encuentra en C3. 
-
-Digamos que queremos volver a C1 debido que habia una caracteristica que queriamos revisar. Para volver a un commit anterior para observarlo puede usar el comando \textbf{git switch}.
-
-Primero necesitamos saber el id de los commits, que se le conoce como hash. Puede saber esta informacióin mediante \textbf{git log}.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git log: Ver log del repositorio}]
-    user@hostname:~$ git log
-\end{lstlisting}
-
-Teniendo el id de este commit, podemos ver el commit utilizando este id.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git switch: Cambiar a commit}]
-    user@hostname:~$ git switch <hash-commit>
-\end{lstlisting}
-
-Esto hara que nuestra ubicación actual (o sea, el \texttt{HEAD}) se mueva hacia otra posición. Esto nos permite ver el estado de aquel commit. Para volver al commit principal de la branch actual, utilice el siguiente comando.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git switch: Volver al ultimo commit de la branch}]
-    user@hostname:~$ git switch <branch>
-\end{lstlisting}
-
-\subsection{Rehacer un commit anterior}
-
-Digamos estamos en el commit \texttt{C3}, y queremos volver al estado del commit C2. Para esto, tenemos varios comandos. Uno de ellos es \textbf{git revert}, que permite quitar los cambios realizados en un commit. Esto lo hace creando un commit nuevo que borra el commit indicado.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git revert: Quitar modificaciones de un commit}]
-    user@hostname:~$ git revert <hash-commit>
-\end{lstlisting}
-
-Otra manera de volver a un estado anterior es utilizando \textbf{git reset}. Este comando, dependiendo de la flag, puede modificar el historial del repositorio, por lo que no lo recomendamos. Puede investigar sobre el usando el comando man.
-
-\subsection{Merge Conflicts}
-
-Aveces cuando juntemos dos branches de repositorios, estas pueden contener archivos que contengan distintas versiones entre si. Esto se conoce como un \texttt{MERGE CONFLICT}.
-
-Dado que le aparezca merge conflict, puede utilizar el comando \textbf{git status} para saber el estado actual.
-
-\begin{lstlisting}[language=bash, style=terminal, caption={git revert: Quitar modificaciones de un commit}]
-    user@hostname:~$ git status 
-\end{lstlisting}
-
-Aqui podremos ver el estado de error. Simulemos un caso.
-
-\begin{ejer}
-    Cree un repositorio en el cual primero haga el commit de un \texttt{README.md}. Despues haga una branch llamada \texttt{Conflict} y agrege como titulo al readme \texttt{\#Conflict}. En su branch principal, agregue de titulo \texttt{\#Main}. Haga un merge y observe el estado usando git status.
-\end{ejer}
-
-En el archivo conflictivo que le aparezca en git status, vera que se escribiran formatos de la siguiente manera...
-
-\begin{lstlisting}[language=bash]
-    <<<<<<<<<<HEAD
-    #Main
-    ==========
-    #Conflict
-    >>>>>>>>> feature
-\end{lstlisting}
-
-En este caso, el conflicto esta en la primera linea, en donde la branch actual toma valor de Main, y en la branch feature toma valor de conflict. Para solucionarlo, debe borrar tanto las lineas con $<<<$ y $>>>$, como la linea con $===$, y debe escoger entre cual de las dos soluciones se queda. Tambien puede hacer una nueva, si lo ve necesario.
-
-\begin{ejer}
-    Arregle el error del ejercicio anterior. Hagale commit y subalo.
-\end{ejer}
 
 \section{Git Remoto}
 
