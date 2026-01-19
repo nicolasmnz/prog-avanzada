@@ -11,7 +11,6 @@ Esta es una guia para poder controlar un repositorio de manera eficiente. Para e
 
 \section{Introducción a git}
 \input{docs/git/introduction}
-
 \section{Commits}
 \input{docs/git/commit}
 
@@ -24,11 +23,10 @@ Esta es una guia para poder controlar un repositorio de manera eficiente. Para e
 \section{Fuentes y mas}
 
 \begin{itemize}
-    \item \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}
+	\item \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}
 \end{itemize}
 
 \section{Git Branches}
-
 Una interesante caracteristica de Git es las \textbf{Branches}, estas permiten separar el trabajo entre varias ramas las cuales contendran sus propios archivos. 
 
 Actualmente, al iniciar el repositorio, se creo en la branch \texttt{master} o \texttt{main}. Esta branch es la principal del repositorio. 
@@ -43,11 +41,13 @@ En la imagen, C0 indica el commit inicial al realizar un \texttt{git init}, mien
 
 Cuando creemos una branch, esta hara una copia del estado actual del repositorio. Para crear una branch, utilice el comando \texttt{git branch}
 
+
 \begin{lstlisting}[language=bash, style=terminal, caption={git branch: Crear una nueva branch}]
     user@hostname:~$ git branch <nombre>
 \end{lstlisting}
 
 Este comando creara la branch desde el mismo commit en la que se encuentra main.
+
 
 \begin{figure}[H]
     \centering
