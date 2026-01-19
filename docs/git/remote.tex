@@ -1,0 +1,37 @@
+
+El mayor exponente, y por lo mas probable que conociste git, es Github. Notar que Github es una plataforma para poder mantener, publicar, y compartir repositorios en la web, mas no es el unico que utiliza git para mantener su plataforma.
+
+Los comandos que utilizaremos ahora nos permitiran hacer control de los cambios y traspasarlos al repostorio en linea. Utilizaremos la plataforma de Github, pero esto puede extrapolarse a otras plataformas que utilizen git.
+
+\subsection{Clonar un repositorio}
+
+Podemos clonar un repositorio de la siguiente manera. Primero, moverse en la terminal al directorio donde queremos que el repositorio sea copiado. Cuando lo clonemos, se creara una carpeta con todo el contenido del repositorio. 
+
+Cuando ya lo tengamos, clonamos con el siguiente comando:
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git clone: Clonar un repositorio}]
+    user@hostname:~\$ git clone <url-repositorio>
+\end{lstlisting}
+
+Cuando clonemos el repositorio, tendremos todos los contenidos de este en una carpeta con el mismo nombre. Al clonar, tendremos una copia de todos los estados del repositorio, incluyendo branches y commits.
+
+Hay que explicar un concepto importante y es sobre la branch 'origin'. Si realizamos el comando \texttt{git branch -a}, podremos ver una lista de todas las branches que tiene el repositorio. Aquellas que tienen el formato 'origin/<branch-name>' son branches que se encuentran en el repositorio remoto, e indican el estado de este. Por si solas, estas branches no son modificables, para poder realizar cambios en la branch, debemos crear una branch en el formato '<branch-name>' (Es decir, que tenga el mismo nombre pero sin 'origin') que sera nuestra copia local del estado de esa branch. Los commits que realizemos dentro de la branch local no se subiran inmediatamente al repositorio, si no que debemos usar el comando \texttt{git pull} para que se vea cambiado el repositorio remoto.
+\begin{lstlisting}[language=bash, style=terminal, caption={git push: Subir los cambios locales a la branch remota}]
+    user@hostname:~\$ git push
+\end{lstlisting}
+
+Si en cambio queremos actualizar nuestra branch local en caso de que hayan habido cambios en la branch remota, utilizamos el comando \texttt{git pull}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git pull: Recibir cambios realizados en la branch remota}]
+    user@hostname:~\$ git pull
+\end{lstlisting}
+
+De esta forma, podremos ir trabajando tanto en nuestra maquina como en el repositorio remoto.
+
+Hay un caso importante que mencionar aqui. Si tenemos una branch local que no se encuentra en el repositorio remoto, podemos usar el comando \texttt{git push} con el nombre de la branch para que esta sea enviada al repositorio remoto.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git push: Subir branch al repositorio remoto}]
+    user@hostname:~\$ git push -u <branch-name>
+\end{lstlisting}
+
+La flag \texttt{-u} indica a git que los cambios realizados en la branch local pueden ser subidos a su correspondiente branch remota. Es equivalente a la \texttt{--set-upstream}, pero no nos referiremos a este aqui.
