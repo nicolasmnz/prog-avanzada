@@ -1,0 +1,64 @@
+En el mejor de los casos, no habra errores cuando realizemos commits dentro de nuestro repositorio. Sin embargo, en la realidad, es posible que ocuyrran momentos en donde haya probelmas entre versiones. Los problemas varian, pero aca veremos resolución de conflictos para errores comunes.
+
+\subsection{Conflictos de Merge}
+
+Aveces cuando hacemos merge de dos branches pueden contener cambios que hagan conflicto. Por ejemplo, se podria modificar el archivo README en dos branches distintas, de tal modo que al unirlo habran cambios en la branch1 como en la branch2.
+
+Cuando ocurra esto, el merge se realizara pero quedara en estado de conflicto (Merge conflict), el cual se puede revisar con \texttt{git status}. Se tendra que realizar un commit que arregle el conflicto y decida cual sera el cambio que se realizara.
+
+En el archivo conflictivo, vera que se escribira el siguiente formato en donde se encuentre dos versiones distintas. Para este ejemplo, se utilizara la branch 'main' y la branch 'feature'.
+
+\begin{lstlisting}[language=bash]
+    <<<<<<<<<<HEAD
+    <contenido-main>
+    ==========
+    <contenido-feature>
+    >>>>>>>>> feature
+\end{lstlisting}
+
+En la sección de 'HEAD' se encuentra el contenido del documento en la branch actual (En este caso, 'main'). En la sección de 'conflict' se encuentra el estado de la branch que hizo merge con la actual (en este caso, 'feature'). Lo que habra que hacer sera borrar tanto las lineas ($<<<<<$, $>>>>>$ y $=====$), y escribir el contenido que se quiere mantener. Finalmente, realizar un commit que suba los cambios que arreglan el conficto
+
+\subsection{Ver un commit anterior}
+
+Aveces se quiere ver cambios o el estado de un commit anterior. Para poder hacer esto, necesitamos saber el id que identifica al commit para movernos a verlo. Para ver el historial de commits realizados en la branch actual, se puede utilizar el comando de \texttt{git log}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git log: Ver historial de cambios en la branch}]
+    user@hostname:~\$ git log
+\end{lstlisting}
+
+Cuando realizemos este comando, veremos el historial de cambios junto a su id. Luego, podremos movernos especificamente a los commits especificos usando el id y el comando \texttt{git switch}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git switch: Moverse a un commit especifico}]
+    user@hostname:~\$ git switch <id-commit>
+\end{lstlisting}
+
+Al realizar este comando, nuestra posición actual dentro del repositorio se movera a la del commit indicado con el id. Nuestra posición actual es conocida por el nombre 'HEAD'. Se dice que el HEAD se encuentra en el commit x.
+
+Si luego ya queremos volver al commit mas actual de una branch, podemos utilizar el comando de \texttt{git switch}, pero en vez de indicar el id del ultimo commit indicamos el nombre de la branch.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git switch: Moverse al ultimo commit de una branch}]
+    user@hostname:~\$ git switch <branch-name>
+\end{lstlisting}
+
+\subsection{Rehacer un commit}
+
+Digamos que los cambios de un commit no nos gustaron. En este caso se tienen dos posibles comandos para rehacer un cambio.
+
+\subsubsection{git revert}
+
+El comando \texttt{git revert} permite rehacer los cambios realizados en un commit especifico.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git revert: Quitar modificaciones de un commit}]
+    user@hostname:~\$ git revert <hash-commit>
+\end{lstlisting}
+
+\subsubsection{git reset}
+
+El comando \texttt{git reset} toma el id de un commit y vuelve al repositorio al estado del commit indicado. Eso significa, que si estamos en el commit C4, y realizamos un \texttt{git reset} al commit C2, borrara los commits C4 y C3 para quedar en el estado C2.
+
+Eso hace a este comando muy peligroso al poder borrar el historial del repositorio. Tener cuidado, y en el mejor de los casos se puede utilizar un \texttt{git revert} para cambiar los estados anteriores sin tener que borrar el historial del proyecto. En caso que deba realizarse, el comando es de la siguiente manera.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git reset: Resetear el estado del repositorio hasta un commit}]
+    user@hostname:~\$ git reset <hash-commit>
+\end{lstlisting}
+

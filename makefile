@@ -15,4 +15,5 @@ compile-main: ## Compila el documento principal en pdf-latex
 compile-modules: ## Compila documentos modulares (Posible Mejora: Automatizar segun archivos en modular)
 	@echo "[+] Compilando (Modular)"
 	pdflatex -output-directory=$(MODULAR_DIR) $(MODULAR_DIR)/C.tex
+	pdflatex -output-directory=$(MODULAR_DIR) $(MODULAR_DIR)/git.tex
 	@echo "[+] Modulos Compilados"

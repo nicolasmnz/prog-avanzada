@@ -1,0 +1,86 @@
+\subsection{Introducción a las branch}
+
+Una caracteristica importante de git son las \textbf{Branch}. Una branch se considera una rama del trabajo que estamos realizando. 
+Cuando creamos el repostiorio usando \texttt{git init}, en realidad creamos la branch principal que se conoce como \texttt{main} o \texttt{master}. Esta branch se considera la principal, en donde se encuentran todos los cambios realizados o en general funcionales. 
+
+Para poder explicar el funcionamiento de las branches utilizaremos imagenes de una pagina llamada \href{https://learngitbranching.js.org/?NODEMO}{learngitbranching}. Tambien pueden aprender desde esta fuente.
+
+La siguiente imagen muestra el inicio del repositorio tras usar git init (Commit 0, C0) y al subir el README (Commit 1, C1).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/Branch Main.png}
+    \caption{Branch Main}
+\end{figure}
+
+Cuando creemos una branch, esta hara una rama desde el commit desde que nos encontramos (En este caso, C1, que es el ultimo cambio que subimos. Hay formas de moverse entre commits para hacer ramas en previos commits, pero no se veran en esta guia). Para hacer la branch, utilizar el comando \texttt{git branch}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git branch: Crear una nueva branch}]
+    user@hostname:~\$ git branch <branch-name>
+\end{lstlisting}
+
+El resultado de este comando se ve en la siguiente imagen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/new_branch.png}
+    \caption{Nueva Branch: Feature}
+\end{figure}
+
+En este ejemplo se creo una branch con el nombre 'feature'. En general, las branches son utilizadas para agregar un cambio especifico que se debe desarrollar o probar, y que no queremos que modifique la branch principal hasta que este todo listo y correcto para funcionar.
+
+Como ahora tenemos dos ramas distintas. Los cambios (commits) realizados dentro de la branch 'feature' no seran vistos dentro de la branch 'main' y viceversa. Podran desarrollarse de manera independiente. Si queremos movernos entre branches se utiliza el comando \texttt{git checkout}.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git checkout: Moverse a una branch}]
+    user@hostname:~\$ git checkout <branch-name>
+\end{lstlisting}
+
+\subsection{Juntar cambios entre branches}
+
+Cuando tengamos todos los cambios realizados que queremos en la nueva branch y creemos que ya es momento de integrarlos en 'main', podremos utilizar dos metodos distintos de integrar los cambios. Consideremos que queremos insertar los cambios hechos en 'feature' a 'main'.
+
+\subsubsection{git merge}
+
+\texttt{git merge} permite hacer un commit en la branch que recibira los cambios. En este commit, se incluyen todos los cambios que se tienen de la otra branch con la branch actual, ademas de la información de cuando se hizo el merge, desde que branch y hacia cual. Este tipo de commits se le conoce como el 'merge commit'. 
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git merge: Fusionar la branch actual con otra branch}]
+    user@hostname:~\$ git merge <branch-name>
+\end{lstlisting}
+
+El resultado se ve en la siguiente imagen:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/merge.png}
+    \caption{Resultado de git merge}
+\end{figure}
+
+\subsubsection{git rebase}
+
+\texttt{git rebase} no realiza un 'merge commit', si no que toma todos los commits realizados en la branch actual y los realiza en la branch que recibira los cambios. Esto hace que parezca que nunca hubo una branch. Para hacer esto, utilizar el siguiente comando.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git rebase: Hacer rebase de la branch actual hacia otra}]
+    user@hostname:~\$ git rebase <branch-destino>
+\end{lstlisting}
+
+Los cambios se ven de la siguiente manera:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{img/rebase.png}
+    \caption{Resultado de git rebase}
+\end{figure}
+
+Ambas opciones son igual de validas. Unicamente cambiaran la forma en que se ve la branch, pero los resultados dentro del contenido del repositorio son equivalentes.
+
+\subsection{Eliminar la branch}
+
+Cuando ya tengamos los cambios de una branch integrados dentro de la principal, lo mas probable es que esta branch ya no tenga mas sentido mantenerla. Podemos eliminar del repositorio utilizando la flag \textit{-d}, que indica eliminación de la branch.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={git branch: Borrar branch}]
+    user@hostname:~\$ git branch -d <branch>
+\end{lstlisting}
+
+Si hay cambios dentro de la branch que no se guardaran al eliminarse, le saldra un mensaje de advertencia. En caso de que de verdad quiera borrar estos cambios, cambie la flag a \textit{-D}
+
+Con estos comandos, ya se tiene lo necesario para utilizar git de manera correcta
