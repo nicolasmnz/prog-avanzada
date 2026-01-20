@@ -1,0 +1,64 @@
+\subsection{Manejo de archivos}
+
+Para la creación de archivos podemos utilizar varias maneras. Uno de los comandos mas usados es \texttt{touch}. Este comando cuando se le indica un archivo ya creado cambiara su ultima fecha de acceso (timestamp), pero si el archivo no existe lo creara.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={touch: Creación de un archivo o cambiar timestamp}]
+user@hostname:~\$ touch <filename>
+\end{lstlisting}
+
+Luego, para remover archivos se utiliza el comando \texttt{rm}, el cual significa (r)e(m)ove. Se indica nombre del archivo a eliminar.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={rm: (R)e(m)over un archivo}]
+user@hostname:~\$ rm <filename>
+\end{lstlisting}
+
+Si queremos mover uno (o varios) archivos a otra localización, se utiliza el comando mv, que indica (m)o(v)e.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={mv: (m)o(v)er uno (o varios) archivos a una ubicación}]
+user@hostname:~\$ mv <filename>... <filepath>
+\end{lstlisting}
+
+Un truco util de \texttt{mv} es que tambien nos puede servir para cambiar el nombre del archivo. Dado que el filepath puede indicar tanto carpetas como archivos especificos, podemos indicarle un nombre de archivo nuevo, haciendo entonces que cambie de nombre.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={mv: Cambiar nombre de archivo}]
+user@hostname:~\$ mv <filename> <new-filename>
+\end{lstlisting}
+
+Otra manera tambien de mover archivos es usar \texttt{cp}. \texttt{cp} crea una (c)o(p)ia del archivo y la deja en la ubicación indicada.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cp: (c)o(p)iar un archivo}]
+user@hostname:~\$ cp <filename> <filepath>
+\end{lstlisting}
+
+Por ultimo, si queremos ver los contenidos de un archivo en la terminal, se puede utilizar el comando \texttt{cat}.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cat: Ver contenidos del archivo}]
+user@hostname:~\$ cat <filepath>
+\end{lstlisting}
+Para editar el archivo, se puede utilizar la propia terminal, o puede usarse el comando \texttt{code} para abrir \texttt{Visual Studio Code} en la carpeta o archivo indicado mediante el filepath. Tambien puede usarse otro editor conocido como \texttt{Vim} o \texttt{Neovim}, que funciona directamente en la terminal y permite movertte a traves de ella sin necesidad de mouse. Se va fuera de los contenidos de esta sección, pero dejamos mencionados para que trabajen su curiosidad.
+
+\subsection{Manejo de carpetas}
+
+Para la creación de carpetas, se utiliza el comando \texttt{mkdir} ((m)a(k)e (dir)ectory). Se le puede indicar un filepath, pero debe existir para que funcione correctramente.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={mkdir: Crear directorio nuevo}]
+user@hostname:~\$ mkdir <filepath>
+\end{lstlisting}
+
+El comando \texttt{mv} tambien permite mover carpetas. Su uso es similar al indicado en archivos, solo que en vez de indicarle un archivo le indicamos una carpeta. Los contenidos de la carpeta seran trasladados tambien. Por otro lado, \texttt{cp} tambien funcionara con carpetas. Al final, ambos comandos sirven para mover el archivo indicado por el filepath, por lo que puede ser cualquiera de los dos.
+
+Una diferencia importante si con el manejo de archivos es la eliminación de carpetas. Existe el comando \texttt{rmdir} que permite (r)e(m)over un (dir)ectorio/carpeta, pero este unicamente funciona si los elementos de la carpeta se encuentran vacios.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={rmdir: (R)e(m)over un (dir)ectorio}]
+user@hostname:~\$ rmdir <filepath>
+\end{lstlisting}
+
+Si queremos eliminar una carpeta con los contenidos dentro de esta, podemos volver al comando \texttt{rm}, con la flag de \texttt{-r}. Con esta flag indicamos que queremos eliminar la carpeta y sus contenidos recursivamente. 
+
+\begin{lstlisting}[language=bash, style=terminal, caption={rm: (R)e(m)over un (dir)ectorio con contenidos}]
+user@hostname:~\$ rm -r <filepath>
+\end{lstlisting}
+
+Este comando de por si es muy peligroso. Dada la estructura de archivos de linux vista anteriormente, como todo nace de la carpeta 'root', entonces es posible que al usar este comando borremos todo el contenido de nuestro sistema operativo (Haciendolo inutilizable), o borrar mas carpetas de las que deseabamos. Ademas, el comando no tiene confirmación, pero puede agregarse la flag \texttt{-i} para que la tenga, haciendolo un poco mas seguro.
+
+

@@ -1,0 +1,101 @@
+Antes de empezar, debemos reconocer la estructura de los archivos en Linux. Linux estructura sus archivos mediante FHS, que signifca 'filesystem Hierarchy System'. 
+
+Eso significa que los archivos estan de una forma jerarquia. Todo archivo es hijo de un padre (Es subcarpeta de otra). La unica carpeta que no tiene padre es la carpeta principal que se le conoce como 'root' (raiz). Desde la raiz se encuentran varios archivos que permiten el funcionamiento del sistema operativo. Aqui se ejemplifica la estructura de manera visual
+
+\begin{lstlisting}[language=bash]
+	 /
+	 |-- bin/
+	 |-- boot/
+	 |-- dev/
+	 |-- etc/
+	 |-- home/
+	 |-- lib/
+	 |-- mnt/
+	 |-- opt/
+	 |-- tmp/
+	 |-- usr/
+	 ..  
+\end{lstlisting}
+
+Cuando nosotros abrimos la terminal, esta abrira dentro de una ubicación preterminada. Para saber en que archivo estamos de la terminal, se puede usar el comando pwd, que indica (p)rint (w)orking (d)irectory (Imprimir directorio/carpeta actual).
+
+\begin{lstlisting}[language=bash, style=terminal, caption={pwd: Ver ubicación actual}]
+user@hostname:~\$ pwd
+\end{lstlisting}
+
+\begin{ejer}
+	 Al abrir la terminal de linux, obtenga el directorio en donde empieza al iniciar la terminal. 
+\end{ejer}
+
+Tras haber hecho el ejercicio, se dara cuenta que la ubicación es de la forma 'home/<username>'. Cada vez que abrimos la temrinal se abre en la carpeta home asociada al usuario ingresado.
+
+Si ademas queremos saber que carpetas se encuentran dentro de la que nos encontramos, se puede usar el comando \texttt{ls}, que muestra los archivos dentro de nuestra carpeta.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={ls: Lista de archivos en el directorio actual}]
+user@hostname:~\$ ls
+\end{lstlisting}
+
+Notemos que si usamos este comando no mostrara aquellas carpetas ocultas por el sistema. Las carpetas ocultas empiezan con el caracter '.', por lo que la carpeta '.fold' no se mostraria usando el comando ls. Para hacer que la muestre, debemos usar la flag \texttt{-a}, que indica que mostremos todo lo que contiene la carpeta, includio archivos ocultos.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={ls: Lista de archivos con archivos ocultos}]
+user@hostname:~\$ ls -a
+\end{lstlisting}
+
+Por ultimo si queremos ver que contiene una carpeta que no es la carpeta actual, se puede indicar el archivo que queremos ver indicando su ubicación dentro del sistema.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={ls: Lista de archivos de un directorio especifico}]
+user@hostname:~\$ ls <filepath> 
+\end{lstlisting}
+
+\subsubsection{Ubicación de archivo (filepath)}
+
+El \textbf{filepath} es la ubicación de un archivo. Esta puede ser indicada de dos maneras distintas. Considere la siguiente forma de los archivos.
+
+\begin{lstlisting}[language=bash]
+	/
+	|-- bin/
+	|-- home/
+	|	| -- user2
+	|	|	| -- Folder3
+	|	| -- user1
+	|	|	| -- Workspace
+	|	|	| -- Downloads
+	|	|	| -- Documents (*)
+	|	|	|	| -- Folder1
+	|	|	|	| -- Folder2
+	..
+\end{lstlisting}
+
+Digamos que la terminal se encuentra en la carpeta Documents, que tiene las siguientes caracteristicas.
+
+\begin{itemize}
+	\item Folder1 y Folder2 son hijas de Documents
+	\item Downloads y Workspace son hermanas de Documents
+	\item user1 es padre de Documents
+\end{itemize}
+
+Si queremos indicar al comando \texttt{ls} (o cualquier otro comando) la ubicación del archivo, debemos indicarle la ubicación. Hay dos maneras de indicar esto. Consideremos que queremos ir hacia la carpeta 'Folder1'.
+
+\begin{itemize}
+	\item \textbf{Relative Path (Ruta relativa)}: Empieza desde la carpeta actual. Si quisieramos movernos hacia Folder1, entonces debemos indicar al comando ls de la forma \texttt{Folder1}, ya que se encuentra dentro de la carpeta actual.
+	\item \textbf{Absolute Path (Ruta absoluta)}: Esta empieza desde la carpeta root (que es indicada mediante un /). En este caso, se indicaria de la forma \texttt{/home/user1/Documents/Folder1}
+\end{itemize}
+
+Ambas maneras indican el mismo camino hacia el archivo, solo que en distinto lenguaje. Ahora, en vez de querer ver los contenidos de Folder1, queremos ver los contenidos de la carpeta 'Folder3'.
+
+\begin{itemize}
+	\item \textbf{Relative Path}: Deberemos indicarle que queremos ver una carpeta superior a la que nosotros. Podemos indicar con \texttt{..} que queremos subir una escala en la jerarquia, por lo que la ruta se veria de la forma \texttt{../../user2/Folder3}, en donde subimos jerarquia (de Documents a user1), subimos nuevamente (de user1 a home) y accedemos a las carpetas dentro de este (user2 y luego Folder3)
+	\item \textbf{Absolute Path}: Esta empieza de la carpeta root, por lo que unicamente indicamos la ruta. Queda de la forma \texttt{/home/user2/Folder3}
+\end{itemize}
+
+Dependiendo del contexto, una sera mas facil que escribir de la otra, por lo que es util saber que existen ambas formas de escritura. Ademas, el filepath puede describir la ubicación tanto de archivos como carpeta, asi que es usado por otros comandos para modificar archivos.
+
+Por ultimo, si queremos movernos a otra carpeta en la terminal, podemos usar el comando \texttt{cd}. Recibe tambine coomo input el filepath, y movera la terminal a la ubicación indicada.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={cd: Cambiar de directorio}]
+user@hostname:~\$ cd <filepath>
+\end{lstlisting}
+
+Si queremos movernos a una carpeta, indicamos su nombre. Si queremos subir al directorio padre, tambien se puede indicar mediante \texttt{..}. Es cosa de entender el filepath.
+
+Por ultimo, si se quiere volver a la ubicación preterminada de inicio, utilice \texttt{cd} sin ningun filepath.
