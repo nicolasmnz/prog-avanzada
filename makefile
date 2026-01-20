@@ -16,4 +16,5 @@ compile-modules: ## Compila documentos modulares (Posible Mejora: Automatizar se
 	@echo "[+] Compilando (Modular)"
 	pdflatex -output-directory=$(MODULAR_DIR) $(MODULAR_DIR)/C.tex
 	pdflatex -output-directory=$(MODULAR_DIR) $(MODULAR_DIR)/git.tex
+	pdflatex -output-directory=$(MODULAR_DIR) $(MODULAR_DIR)/terminal.tex
 	@echo "[+] Modulos Compilados"
