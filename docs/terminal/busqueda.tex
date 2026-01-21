@@ -1,0 +1,95 @@
+La busqueda de archivos es de las herramientas mas utiles que podemos utilizar dentro de la terminal. Hay varios comandos que nos permiten filtrar por resultados, pero para poder usarlos es necesario tener conocmimiento de las wildcards.
+
+\subsection{Wildcards}
+
+En la terminal de linux, podemos usar wildcards para representar una variedad de caracteres y, por tanto, una variedad de archivos. Primero, notemos una tabla que contiene variedad de wildcards que podemos utilizar.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{5.5cm}|p{4.5cm}|}
+        \hline
+        \textbf{Wildcard} & \textbf{¿Que hace?} & \textbf{Ejemplo} \\
+        \hline
+        * & Coincide con cualquier elemento & \texttt{V*} indica todas las palabras que empiezan con V. \\
+        \hline
+        ? & Coincide con cualquier elemento de un caracter unicamente & \texttt{V?} coincide con \texttt{VA} o \texttt{V1}, pero no con \texttt{VAA} \\
+        \hline
+        [] & Coincide con cualquier elemento dentro de este & \texttt{x[ABC]} coincide con \texttt{xA}, \texttt{xB} y \texttt{xC}\\
+        \hline
+        [-] & Coincide con cualquier elementro dentro del rango indicado & ´x[1-3]´ coincide con \texttt{x1}, \texttt{x2} y \texttt{x3}. \\
+        \hline
+    \end{tabular}
+    \caption{Listado de Wildcards}
+\end{table}
+
+Estas wildcards nos permitiran ahorrarnos caracteres o incluso poder filtrar en base a lo que buscamos. Por ejemplo, considere el siguiente directorio.
+
+\begin{lstlisting}[language=bash]
+	/
+	|-- home/ 
+	|	| -- user1 (*)
+	|	|	| -- Workspace
+	|	|	| -- Documents
+	|	|	| -- Downloads
+	..
+\end{lstlisting}
+
+Si estamos en la ubicación user1, y queremos movernos a Workspace, deberiamos de usar el comando \texttt{cd Workspace}. Sin embargo, podemos hacer esto con menos caracteres y que haga el mismo resultado. Recordando la tabla superior, \texttt{*} indica con cualquier elemento, por lo tanto, podriamos realizar el comando \texttt{cd W*} y funcionaria de igual manera, ya que Workspace empieza con W y continua con cualquier elemento, siendo entonces un match.
+
+Estas wildcards pueden usarse en varias situaciones. Ahora veremos ejemplos de otros usos, pero notar que las wildcards funcionaran siempre que el comando sea capaz de aceptarlas. Si en la carpeta user1 tuvieramos otra carpeta que empezara con W, la wildcard retornaria dos matches, y el comando \texttt{cd} solo acepta una ubicación, por lo que retornaria error.
+
+Con esto listo, podemos continuar al filtrado de archivos. Recordar el como usar las wildcards, que se usaran en varios otros lugares, tales como Expresiones Regulares.
+
+\subsection{Encontrar archivos}
+
+Digamos que queremos encontrar un archivo que sabemos contiene la palabra 'doc'. Para poder encontrar el documento, hay varios comandos que nos servirian.
+El mas comun de utilizar es locate. Este nos retorna todos los archivos que contengan al string entregado de argumento.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={locate: Encontrar todos los documentos con un string en el}]
+user@hostname:~\$ locate <string>
+\end{lstlisting}
+
+Este string puede ser utilizado con expresiones regulares para poder filtrar aun mas la busqueda. 
+
+\begin{ejer}
+	Considere que esta buscando todos los posibles documentos .tex. Que formato de string usaria para que el locate retorne esto?. Si ademas sabemos que el documento tiene un numero del 1 al 9 previo al .tex, ¿Como cambiaria el string?
+\end{ejer}
+
+Otro comando muy util es \texttt{grep}. grep permite filtrar dentro de strings completos palabras que contengan el string dentro de ellas. A diferencia del locate, este puede tomar cualquier texto, incluso aquellos dentro de un archivo o directorio.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={grep: Filtrar por patron}]
+user@hostname:~\$ grep <string> <directorio>
+\end{lstlisting}
+
+Este comando puede juntarse con el resultado de otros para filtrar mas busquedas.Existe un comando conocido como \texttt{pipeline}, de la forma \texttt{|}, que hace que un comando pueda recibir el output de otro comando.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={pipeline: Encadenar un output}]
+user@hostname:~\$ <command-1> | <command-2>
+\end{lstlisting}
+
+De esta manera, el resultado que se reciba del comando 1 sera entregado como input para el comando 2.
+
+\begin{ejer}
+	Utilize los comandos de \texttt{grep}, \texttt{ls} y \texttt{pipeline} para mostrar todos los archivos de la carpeta actual que terminen en .tex
+\end{ejer}
+
+Por ultimo, una manera de encontrar la ubicaciones de ejecutables es usando \texttt{which}. Este comando nos entrega la ubicación de archivos ejecutables, por lo que es util para saber donde se encuentran y sacar funciones.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={which: Mostrar ubicación de comando}]
+user@hostname:~\$ which <comando>
+\end{lstlisting}
+
+\begin{ejer}
+    Encuentre la ubicación de los comandos:
+    \begin{itemize}
+        \item ls
+        \item cd
+        \item gcc
+    \end{itemize}
+    ¿Que poseen en común estas ubicaciones? Si queremos ademas agregar un comando a la terminal, ¿En que ubicación lo dejaria?
+\end{ejer}
+
+
+
+
+

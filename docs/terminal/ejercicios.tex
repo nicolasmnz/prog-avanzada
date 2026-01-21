@@ -1,0 +1,43 @@
+\section{Ejercicios Adicionales}
+
+(Nota, incluyen algunos que utilizan el comando sed para cambiar las palabras. Ver despues el agregar este comando a la lista de comandos necesarios para aprender linux)
+
+\begin{ejer}
+    Un amigo suyo le entrego una carpeta con canciones de su banda favorita, Hesse Kassel, tanto en formato mp4 como mp3. Usted desea unicamente los archivos mp3. Haga un comando que remueva todos los archivos .mp4 de la carpeta actual.
+
+    Pista: Puede hacer algo parecido a \texttt{ls <patron>} para decirle a \texttt{rm} que remueve aquellos que coincidan con un patron.
+\end{ejer}
+
+\begin{ejer}
+    El comando ps aux retorna una lista con todos los procesos que se ejecutan en el momento. Si se sabe que todo proceso que usa la cpu contiene 'cpu' en el nombre, utilize el comando ps para mostrar en la terminal todos los procesos ejecutandose en la cpu.
+
+    Pista: Utilice la \texttt{pipeline} para este proposito.
+\end{ejer}
+
+\begin{ejer}
+    En la carpeta downloads se instalo un ejecutable de un compilador llamado typst. Usted quiere que este ejecutable pueda ejecutarse desde cualquier ubicación usando la terminal. Escriba un comando que realice esto, asumiendo que se encuentra en la misma ubicación que el ejecutable.
+
+    Pista: Analice los resultados del ejercicio 7 para poder resolver este ejercicio.
+\end{ejer}
+
+\begin{ejer}
+    Usted investigando aprendio un comando muy util llamado \texttt{xargs}. Este permite transformar cualquier linea de texto y entregar por input como separado cualquier elemento que este con un espacio entre medio. Por ejemplo, \texttt{xargs "x1 x2"} retornaria \texttt{x1} y \texttt{x2} por separado.
+
+    Utilice este comando para mover de una carpeta todos los archivos que tengan el formato \texttt{.c}.
+\end{ejer}
+
+\begin{ejer}
+    Benjito es un compañero suyo que le gusta mucho hacer documentos en latex, pero siempre está revisando documentos antiguos para recordar la configuración que le gusta para cada tipo de documento. Benjito se aburrió de copiar manualmente y se le ocurrió hacer una template que la guardará en ~/templates.
+    
+    Escriba un comando que le permita a benjito poder copiar el contenido de template en una carpeta con nombre personalizado
+\end{ejer}
+
+\begin{ejer}
+    Usted esta realizando un codigo en C++ que utiliza archivos header (.h). Leyendo aprendio que habia una mejor forma para indicar los headers de C++, la cual es .hpp, ya que .h es para indicar headers de C. Realice un comando en la terminal que le permita solucionar su error, asumiendo que todos los .h se encuentran en la carpeta actual.
+
+    Pista: Investigue el comando \texttt{rename} para cumplir este proposito.
+\end{ejer}
+
+\begin{ejer}
+    Un compañero suyo le paso casos de prueba para un codigo que estaban haciendo. En este, tiene que verificar las rimas de los versos de un .txt llamado estrofa.txt. Sin embargo, se dio cuenta que su compañero escribio todas las ´a´ como ´4´, haciendo que palabras como armadura terminen siendo 4rm4dur4. Realice desde la terminal un comando que arregle este error de tipeo.
+\end{ejer}
