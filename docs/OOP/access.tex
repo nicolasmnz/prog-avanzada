@@ -1,0 +1,56 @@
+La palabra \texttt{public} usada anteriormente no viene sin razon. Este es una forma de indicar los permisos de acceso para los elementos de una clase, conocidos formalmente como modificadores de acceso.
+
+\subsection{Modificadores de acceso}
+
+Un modificador de acceso permite bloquear el acceso de un atributo o metodo a utilizar. Existen tres principales formas de indicar acceso.
+
+El primero corresponde al \texttt{public}. Public indica publico, por lo que no pone barreras al acceso de los datos. Tanto la propia clase como desde fuera se puede acceder y modificar estos datos. En el ejemplo que llevabamos trabajando previamente, pudimos acceder desde \texttt{main} al atributo de patente, al ser este publico
+
+El segundo corresponde a \texttt{private}. Por como su nombre lo indica, es privado y unicamente puede ser accedido por su propia clase. Esto significa que si desde \texttt{main} intentamos accederlo, nos dara error. Para ejemplificarlo, hagamos que el parametro de velocidad de la clase Auto sea privado.
+
+\begin{lstlisting}[language=cpp,style=customc,caption={Metodo de acceso private}]
+class Auto{ // Definición de la clase 'Auto'
+	private:
+		int velocidad; // Atributo privado, unicamente accesible por la propia clase
+
+	public:
+		std::string patente; // Atributo publico, puede accederse desde fuera de la clase
+
+		int acelerar(int nueva_velocidad){ // Metodo publico, puede accederse desde fuera de la clase
+			// codigo...
+		}
+};
+\end{lstlisting}
+
+Primero, notar que dentro de una clase podemos tener mas de un modificador de acceso respecto a las necesidades que tengamos. En el ejemplo, el atributo velocidad se encuentra privado, mientras que patente y el metodo acelerar se encuentran aun en publico. Cuando accedimos a patente en \texttt{main} mediante el codigo \texttt{vehiculo1.patente} solo fui posible dado que el atributo es publico. Si quisieramos ahora acceder al atributo de velocidad desde \texttt{main}, dara error al no estar dentro de una clase.
+
+Si queremos acceder a el, debemos hacerlo dentro de la clase. Una manera comun de hacerlo es mediante los metodos. Dado que tenemos un metodo llamado 'acelerar' que recibe como parametro \texttt{nueva_velocidad}, podemos entonces hacer que este metodo cambie la velocidad del vehiculo. Esto funciona dado que el metodo 'acelerar' esta definido dentro de la clase, y por tanto puede acceder a los atributos y metodos definidos con un modificador de acceso \texttt{private}.
+
+\begin{ejer}
+	Cree el codigo de la función \texttt{acelerar}, donde reciba de parametro una velocidad, y cambie el valor del atributo privado a la recibida en el metodo. Asegurese que retorne la velocidad privada, para asegurarnos de que haya camnbiado el valor interno del metodo.
+\end{ejer}
+
+Por ultimo, esta el modificador de acceso \texttt{private}, que oculta como al private, exceptuando a clases hijas de la actual. Esto es contenido de herencia que se vera despues, asi que por el momento definirlo como un private.
+
+\subsection{Getters y Setters}
+
+Al haber hecho que el funcionamiento de \texttt{acelerar} sea cambiar el valor del atributo privado \texttt{velocidad}, transformamos a este metodo en un tipo de metodo especial, llamado \textbf{setter}. 
+
+La función de un metodo set (o setter) es la de modificar el valor de un atributo privado. De esta manera, si nos encontramos fuera de la clase, igual podremos modificar estos valores haciendo uso del metodo que es publico. Se le llama setter dado que cambia (set) el valor del atributo privado.
+
+Si por otro lado quisieramos tener un metodo que nos permita obtener el valor de un atributo privado, entonces estariamos frente a un metodo \textbf{Get}. Se les llama get (o getter) dado que obtienen (get) el valor del atributo privado.
+
+Estas funciones permiten mantener el estado del atributo privado, pero a la vez poder acceder y modificar sus valores si es necesarios. Ademas, como son metodos, podemos agregar condiciones para poder modificar los valores, modificarlo segun el estado de la clase, etc. En general, el formato de estos metodos es \texttt{set<Attribute>}
+ o \texttt{get<Attribute>}, pero no es estrictamente necesario.
+
+\begin{ejer}
+	En la clase Auto, cambie el atributo de \texttt{patente} a privado, y cree dos metodos para esta, un set y un get, para poder modificar y ver el valor de la patente, respectivamente.
+\end{ejer}
+
+\subsection{Encapsulamiento}
+
+Un concepto importante de conocer es el de \textbf{encapsulamiento}, el cual nos indica de mantener datos sensibles para el usuario oculto para ellos, para asi no tener mayores complicaciónes en su uso.
+
+En general, estos dependeran del contexto. La mayoria de veces se tomara los datos personales o privados como encapsulamiento. Luego, hay formas de usar encapsulamiento para simplificar el uso de clases, tales como el TDA (Tipo de Datos Abstractos), en donde sabemos como interactuar con el TDA, pero no sabemos como funciona o que datos guarda internamente, al tenerlos encapsulados.
+
+(Esta descripción es un poco corta para todo lo que refiere a TDA, pero se vera en su curso correspondiente de Estructura de Datos)
