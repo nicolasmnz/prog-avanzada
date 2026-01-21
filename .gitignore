@@ -2,6 +2,10 @@
 main.*
 q.log
 !main.tex
+*.lol
+*.log
+*.out
+*.pdf
 
 # Ignorar todos los contenidos que salen al compilar los documentos modulares
 modular/*
