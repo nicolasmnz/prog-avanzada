@@ -1,0 +1,52 @@
+Una clase es un tipo de dato que definimos nosotros, en donde podemos asociarle atributos y metodos para que este objeto funcione, independiente de sus propiedades intrinsecas. En general, es mas facil entender la idea de clases mediante ejemplos, asi que haremos uno.
+
+Una clase que podriamos considerar seria un auto.
+
+\begin{itemize}
+	\item Un auto tiene propiedades (tales como su patente, o la velocidad en la que va). Estas propiedades del auto se les conoce como los \textbf{atributos} de la \textbf{clase} auto.
+	\item Un auto tiene funciones o metodos que nos permiten interactuar con el. Por ejemplo, una 'funcion' que podriamos realizar seria el acelerador, donde al pulsarlo hace que el auto acelere. Estas 'funciones' se les conoce como los \textbf{metodos} de la \textbf{clase} auto. Los \textbf{metodos} son funciones de la clase.
+	\item Podemos entender que cuando pensamos en un auto, la mayoria comparte las mismas propiedades (tener un patente, tener velocidad) y metodos (tener un acelerador). Al ter una \textbf{clase} auto, sabemos que tendra estas propiedades y metodos, dado que estan definidos dentro de su clase, por lo que nos asegura su funcionamiento
+\end{itemize}
+
+Con esto, podemos entonces tener un tipo de objeto el cual nos asegura que contenga los atributos y metodos definidios. Eso significa que si una variable es del tipo auto, tendra si o si el metodo 'acelerador' o un patente de atributo. Para definir la clase, se utiliza la palabra \texttt{class}.
+
+\begin{lstlisting}[language=cpp,style=customc,caption={Definir clase}]
+class Auto{ // Definición de la clase 'Auto'
+	public:
+		std::string patente; // Atributo de la clase
+		int velocidad; // Atributo de la clase
+
+		int acelerar(int nueva_velocidad){ // Metodo de la clase
+			// codigo...
+		}
+};
+\end{lstlisting}
+
+Luego podemos definir distintos autos en base a las caracteristicas que queramos. Al ser la clase un tipo de auto, podemos definir variables que contenga los datos de auto, para luego definirle su patente, el motor, o usar metodos en el (Usar el acelerar para poder cambiar la velocidad). Cuando creamos una variable con estos valores, se le conoce como una \textbf{instancia} de la \textbf{clase} auto. En el siguiente codigo se muestra como definimos dos instancias distintas de distintos vehiculos.
+
+\begin{lstlisting}[language=cpp,style=customc,caption={Definir clase}]
+class Auto{ // Definición de la clase 'Auto'
+	public:
+		std::string patente; // Atributo de la clase
+		int velocidad; // Atributo de la clase
+
+		int acelerar(int nueva_velocidad){ // Metodo de la clase
+			// codigo...
+		}
+};
+
+int main(){
+	Auto vehiculo1; // Instancia del vehiculo
+	Auto vehiculo2; // Otra instancia del vehiculo
+
+	vehiculo1.patente = 'GK-SB-82'
+	vehiculo2.patente = 'HK-SK-25'
+
+	// Ambas instancias comparten el atributo patente, pero al ser instancias distintas, cada una tiene sus propios valores
+
+}
+\end{lstlisting}
+
+Para acceder a los metodos y atributos de una clase se utiliza el \texttt{.}, tal como aparece en el ejemplo superior. Notar que si creamos un puntero de una clase, la forma de acceder cambia del punto a una flecha \texttt{->}.
+
+Con eso tenemos el funcionamiento basico de las clases. Debemos notar eso si una sección del codigo, la cual dice \texttt{public}.
