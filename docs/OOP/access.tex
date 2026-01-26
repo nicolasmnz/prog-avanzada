@@ -8,7 +8,7 @@ El primero corresponde al \texttt{public}. Public indica publico, por lo que no 
 
 El segundo corresponde a \texttt{private}. Por como su nombre lo indica, es privado y unicamente puede ser accedido por su propia clase. Esto significa que si desde \texttt{main} intentamos accederlo, nos dara error. Para ejemplificarlo, hagamos que el parametro de velocidad de la clase Auto sea privado.
 
-\begin{lstlisting}[language=cpp,style=customc,caption={Metodo de acceso private}]
+\begin{lstlisting}[language=c,style=customc,caption={Metodo de acceso private}]
 class Auto{ // Definición de la clase 'Auto'
 	private:
 		int velocidad; // Atributo privado, unicamente accesible por la propia clase
@@ -27,10 +27,10 @@ Primero, notar que dentro de una clase podemos tener mas de un modificador de ac
 Si queremos acceder a el, debemos hacerlo dentro de la clase. Una manera comun de hacerlo es mediante los metodos. Dado que tenemos un metodo llamado 'acelerar' que recibe como parametro \texttt{nueva_velocidad}, podemos entonces hacer que este metodo cambie la velocidad del vehiculo. Esto funciona dado que el metodo 'acelerar' esta definido dentro de la clase, y por tanto puede acceder a los atributos y metodos definidos con un modificador de acceso \texttt{private}.
 
 \begin{ejer}
-	Cree el codigo de la función \texttt{acelerar}, donde reciba de parametro una velocidad, y cambie el valor del atributo privado a la recibida en el metodo. Asegurese que retorne la velocidad privada, para asegurarnos de que haya camnbiado el valor interno del metodo.
+	Cree el codigo de la función \texttt{acelerar}, donde reciba de parametro una velocidad, y cambie el valor del atributo privado a la recibida como parametro en la función. Asegurese que retorne la velocidad privada, para asegurarnos de que haya camnbiado el valor interno del metodo.
 \end{ejer}
 
-Por ultimo, esta el modificador de acceso \texttt{private}, que oculta como al private, exceptuando a clases hijas de la actual. Esto es contenido de herencia que se vera despues, asi que por el momento definirlo como un private.
+Por ultimo, esta el modificador de acceso \texttt{protected}, que oculta como al private, exceptuando a clases hijas de la actual. Esto es contenido de herencia que se vera despues, asi que por el momento definirlo como un private.
 
 \subsection{Getters y Setters}
 
