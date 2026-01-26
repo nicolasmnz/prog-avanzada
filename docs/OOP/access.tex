@@ -8,8 +8,8 @@ El primero corresponde al \texttt{public}. Public indica publico, por lo que no 
 
 El segundo corresponde a \texttt{private}. Por como su nombre lo indica, es privado y unicamente puede ser accedido por su propia clase. Esto significa que si desde \texttt{main} intentamos accederlo, nos dara error. Para ejemplificarlo, hagamos que el parametro de velocidad de la clase Auto sea privado.
 
-\begin{lstlisting}[language=c,style=customc,caption={Metodo de acceso private}]
-class Auto{ // Definición de la clase 'Auto'
+\begin{lstlisting}[language=C++,style=customc,caption={Metodo de acceso private}]
+class Auto{ // Definicion de la clase 'Auto'
 	private:
 		int velocidad; // Atributo privado, unicamente accesible por la propia clase
 
@@ -24,7 +24,7 @@ class Auto{ // Definición de la clase 'Auto'
 
 Primero, notar que dentro de una clase podemos tener mas de un modificador de acceso respecto a las necesidades que tengamos. En el ejemplo, el atributo velocidad se encuentra privado, mientras que patente y el metodo acelerar se encuentran aun en publico. Cuando accedimos a patente en \texttt{main} mediante el codigo \texttt{vehiculo1.patente} solo fui posible dado que el atributo es publico. Si quisieramos ahora acceder al atributo de velocidad desde \texttt{main}, dara error al no estar dentro de una clase.
 
-Si queremos acceder a el, debemos hacerlo dentro de la clase. Una manera comun de hacerlo es mediante los metodos. Dado que tenemos un metodo llamado 'acelerar' que recibe como parametro \texttt{nueva_velocidad}, podemos entonces hacer que este metodo cambie la velocidad del vehiculo. Esto funciona dado que el metodo 'acelerar' esta definido dentro de la clase, y por tanto puede acceder a los atributos y metodos definidos con un modificador de acceso \texttt{private}.
+Si queremos acceder a el, debemos hacerlo dentro de la clase. Una manera comun de hacerlo es mediante los metodos. Dado que tenemos un metodo llamado 'acelerar' que recibe como parametro \texttt{nueva\_velocidad}, podemos entonces hacer que este metodo cambie la velocidad del vehiculo. Esto funciona dado que el metodo 'acelerar' esta definido dentro de la clase, y por tanto puede acceder a los atributos y metodos definidos con un modificador de acceso \texttt{private}.
 
 \begin{ejer}
 	Cree el codigo de la función \texttt{acelerar}, donde reciba de parametro una velocidad, y cambie el valor del atributo privado a la recibida como parametro en la función. Asegurese que retorne la velocidad privada, para asegurarnos de que haya camnbiado el valor interno del metodo.

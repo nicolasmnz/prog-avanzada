@@ -11,7 +11,7 @@ Una clase que podriamos considerar seria un auto.
 Con esto, podemos entonces tener un tipo de objeto el cual nos asegura que contenga los atributos y metodos definidios. Eso significa que si una variable es del tipo auto, tendra si o si el metodo 'acelerador' o un patente de atributo. Para definir la clase, se utiliza la palabra \texttt{class}.
 
 \begin{lstlisting}[language=c,style=customc,caption={Definir clase}]
-class Auto{ // Definición de la clase 'Auto'
+class Auto{ // Definicion de la clase 'Auto'
 	public:
 		std::string patente; // Atributo de la clase
 		int velocidad; // Atributo de la clase
@@ -25,7 +25,7 @@ class Auto{ // Definición de la clase 'Auto'
 Luego podemos definir distintos autos en base a las caracteristicas que queramos. Al ser la clase un tipo de auto, podemos definir variables que contenga los datos de auto, para luego definirle su patente, el motor, o usar metodos en el (Usar el acelerar para poder cambiar la velocidad). Cuando creamos una variable con estos valores, se le conoce como una \textbf{instancia} de la \textbf{clase} auto. En el siguiente codigo se muestra como definimos dos instancias distintas de distintos vehiculos.
 
 \begin{lstlisting}[language=c,style=customc,caption={Definir clase}]
-class Auto{ // Definición de la clase 'Auto'
+class Auto{ // Definicion de la clase 'Auto'
 	public:
 		std::string patente; // Atributo de la clase
 		int velocidad; // Atributo de la clase
@@ -49,4 +49,4 @@ int main(){
 
 Para acceder a los metodos y atributos de una clase se utiliza el \texttt{.}, tal como aparece en el ejemplo superior. Notar que si creamos un puntero de una clase, la forma de acceder cambia del punto a una flecha \texttt{->}.
 
-Con eso tenemos el funcionamiento basico de las clases. Debemos notar eso si una sección del codigo, la cual dice \texttt{public}.
+Con eso tenemos el funcionamiento basico de las clases. Debemos notar eso si una seccion del codigo, la cual dice \texttt{public}.
