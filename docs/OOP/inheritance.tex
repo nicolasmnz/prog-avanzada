@@ -1,0 +1,56 @@
+Un ultimo concepto importante de OOP es la herencia. La herencia nos permite reutilizar codigo de una clase padre y darselos a una clase hijo. La clase hijo podra definir sus propios metodos y atributos, pero ademas obtendra todos aquellos del padre. Sirve para hacer un cierto nivel de abstracción en el desarrollo.
+
+Considerando el ejemplo del Auto, podemos imaginar que esta pueda pertencer a una clase superior llamada Vehiculo. La clase Vehiculo contiene todos los elementos que deberia tener un vehiculo, mientras que la clase Auto define los propios del auto. Este ejemplo se veria de la siguiente manera:
+
+\begin{lstlisting}[language=C++,style=customCpp,caption={Herencia en C++}]
+
+// Clase padre que contiene los metodos generales de un vehiculo
+class Vehiculo{
+	protected:
+		int ruedas;
+		std::string patente;
+		int velocidad;
+
+	public:
+		// Constructor y destructor...
+
+		std::string getPatente(){
+			return patente;
+		}
+
+		int acelerar(); // Declaración de función acelerar
+}
+
+class Auto : public Vehiculo{
+	private:
+		std::string; // Modelo del auto
+
+	public:
+		// Constructor y destructor
+
+		int acelerar(); // Declaración de función acelerar
+
+		void subirVidrio(); // Declaración de función subirVidrio
+		// Notar como este metodo es unico de Auto, pero no de Vehiculo
+}
+
+class Moto : public Vehiculo{
+	private:
+		std::string; // Modelo del auto
+	
+	public:
+		// Notar que hereda los mismos elementos que el padre, pero no de Auto
+		// Naturalmente, no tiene la función de subirVidrio, dado que una Moto no tiene
+}
+\end{lstlisting}
+
+En este ejemplo, la clase Auto hereda los elementos de la clase Vehiculo. Eso significa que si dentro de la función \texttt{acelerar} deseamos usar el parametro de velocidad, este estara declarado dado que proviene de su clase padre, Vehiculo. Lo mismo si intentamos utilizar el metodo \texttt{getPatente}.
+
+Los parametros y metodos de la clase padre no se heredan automaticamente al hijo. Estos dependen de los metodos de acceso previamente definidos.
+\begin{itemize}
+	\item Los elementos \texttt{public} se heredan al hijo.
+	\item Los elementos \texttt{private} se heredan al hijo, los tendra, pero no podra acceder a ellos.
+	\item Los elementos \texttt{protected} se heredan al hijo, la clase hija podra acceder a estos contenidos, pero no pueden ser accedidos fuera de la clase.
+\end{itemize}
+
+%% Debo aun incluir lo de las clases genericas.
