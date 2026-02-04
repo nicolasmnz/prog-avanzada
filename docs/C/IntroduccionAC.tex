@@ -1,31 +1,3 @@
-En Programación Avanzada, vemos un nuevo lenguaje de programación conocido como C. Trae muchas diferences que lo visto en Python, por lo que es importante conocerlas antes de usarlo.
-
-\section{Compilación}
-
-A diferencia de python, C es un lenguaje compilado. Esto implica que no podemos andar el codigo como tal. Para esto se usa compiladores. 
-
-En el curso se vera el compilador por defecto de C que es GCC. La idea de esta introducción es ver como compilar un programa de C para ser ejecutable. 
-
-Los archivos ejectutables en C tiene el formato `nombre.c`. Este archivo ha de convertirse en un ejecutable para que la computadora lo pueda andar. Para eso, en la terminal, utilizamos el siguiente comando...
-
-\begin{lstlisting}[language=bash, style=terminal, caption={Compilar programa basico de C con GCC}]
-user@hostname:~$ gcc nombre.c
-\end{lstlisting}
-
-Esto hara que en la carpeta donde estamos se cree un ejecutable de la forma `a.out`. Para ejecutar el programa, en la terminal, se utiliza el comando...
-
-\begin{lstlisting}[language=bash, style=terminal, caption={Ejecutar programa en la terminal}]
-user@hostname:~$ ./a.out
-\end{lstlisting}
-
-Si se quiere declarar un nombre de ejecutable distinto a `a.out`, se debe de utilizar la opcion -o dentrode los parametros de gcc. `-o` indica nombre de output, el cual corresponde a la siguiente palabras tras `-o`. Un ejemplo de compilación con nombre distinto al default es...
-
-\begin{lstlisting}[language=bash, style=terminal, caption={Compilar programa en GCC con nombre especifico}]
-user@hostname:~$ gcc -o program nombre.c
-\end{lstlisting}
-
-Con estas simples opciones, podremos ser capaces de compilar codigo en C y ejecutarlo.
-
 \section{Primer programa en C: Hello World}
 
 Una recurrencia en el mundo de la informatica es desarrollar un programa que imprima `Hello World` para aprender un nuevo lenguaje de programación. En esta sección, se realizara esta actividad para entender la syntaxis de C a grandes rasgos.
