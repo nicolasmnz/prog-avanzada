@@ -1,39 +1,3 @@
-\section{Tipado Estatico}
-
-Hemos visto como la funcion de `main()` dentro del codigo tiene un posee un `int` asociado a el. Esto es porque estamos declarando que valor va a retornar la función.
-
-Previamente, en Python, las funciones no debian de indicar que retorna, lo que se conoce como Tipado Dinamico. A diferencia de Python, en C debemos declarar que tipo de datos va a retornar la función. Esto se conoce como Tipado Estatico. C es un lenguaje con Tipado Estatico.
-
-Esto no solo se cumple para las funciones, si no que tambien debemos de declarar que tipo de valor guardan las variables. Los tipos basicos de C son:
-
-\begin{itemize}
-    \item \textbf{int: } Valor numerico que guarda numeros enteros.
-    \item \textbf{char: } Contiene unicamente un caracter
-    \item \textbf{float: } Valor numerico que guarda numeros reales.
-\end{itemize}
-
-C realiza Tipado Estatico para poder saber la cantidad de memoria que sera utilizado por una variable o retorno de esta. Ademas, operadores entre distintos tipos de valores no son permitidos. 
-
-Para ver la diferencia de memoria entre los tipos de datos, realizaremos un ejercicio que necesita saber de los siguiente operadores.
-
-\begin{lstlisting}[language=c,style=customc,caption={Operador sizeof}]
-
-#include <studio.h>
-int main(){
-    int x; // Variable con tipo de dato int
-    printf("Cantidad de memoria utilizada: %d", sizeof(x));
-}
-
-\end{lstlisting}
-
-En este ejemplo, el operador sizeof entrega cuanta memoria utiliza la variable x.
-
-\begin{ejer}
-    Cree un programa en C llamado `SizeofTypes` que imprimia por pantalla los datos de tipo `int`. `float`, y `double`. Comparelos.
-\end{ejer}
-
-Para imprimir numeros por pantalla, use el comando `printf("Cantidad de memoria utilizada: \%d", sizeof(x));`, en donde x corresponde a las variables con cada uno de los tipos. No se preocupe del funcionamiento de esta funcion, se explicara en la siguiente sección.
-
 \section{Input y Output}
 
 En la sección anterior vimos un nuevo uso de la función `printf()`, que permitia mostrar por pantalla el valor retornado por la operación `sizeof`. Ahora explicaremos en mas detalle el input y output.
