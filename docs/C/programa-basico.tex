@@ -1,0 +1,42 @@
+C tiene una forma de escritura distinta a la de Python (Que tuvieron que ver en el curso anterior de Programación). Haremos una introducción a la forma de escribir programas en C mientras comparamos con algunos aspectos importantes que diferencian o son similares a Python
+
+En C, la estructura basica de un programa se ve de la siguiente manera:
+
+\begin{lstlisting}[language=c,style=customc,caption={Estructura de un Programa Basico en C}]
+// Incluir librerias
+#include <stdio.h>
+
+// Definicion de variables constantes o structs
+
+// Definicion de funciones
+
+// Programa Principal (Main)
+int main(){
+	// Codigo
+	return 0;
+}
+\end{lstlisting}
+
+Cada sección tendra su explicación mas detalla proximamente, pero lo importante de notar es lo siguiente:
+\begin{itemize}
+	\item Las librerias se incluyen en el formato \texttt{\#include <library>}. La libreria del ejemplo se le conoce como \textbf{st}an\textbf{d}ard \textbf{i}nput \textbf{o}utput, que nos permite utilizar funciones para recibir o mostrar texto en pantalla.
+	\item La función \texttt{main} es donde empieza el programa. Todo lo escrito dentro de el sera ejecutado al utilizar el ejecutable. Lo que esta afuera (tanto funciones extras o variables globales) no se ejecutan. Deben ser ejecutadas dentro del main. 
+	\item El return 0 utilizado dentro del main sirve para indicarle a la computadora que el programa fue ejecutado con exito. Por eso se debe retornar al final del codigo.
+\end{itemize}
+
+Una cosa importante de entender son los bloques. La función main contiene todo su codigo dentro de los corchetes \texttt{\{\}}. Varias funciones, ademas de main, utilizan los corchetes para delimitar que es lo que realizaran. Se veran mas ejemplos proximamente, pero es importante tenerlo en cuenta para poder entender que el codigo ejecutado de main es el que se encuentra dentro de los corchetes.
+
+Para mostrar un programa basico comun, haremos el ejemplo de Hello World! (Hola Mundo!) Para mostrar por pantalla, se utiliza la función \texttt{printf} que se obtiene al incluir la libreria stdio. Un programa que realiza esta función se ve de la siguiente manera.
+
+\begin{lstlisting}[language=c,style=customc,caption={Hello World en C}]
+#include <stdio.h>
+
+// Programa Principal (Main)
+int main(){
+	printf("Hola Mundo!");
+	return 0;
+}
+\end{lstlisting}
+
+Este programa ejecutado utilizando la compilación hara que se muestre Hola Mundo por pantalla. Pruebelo usando la terminal.
+Por ultimo, una cosa importante es que todas la mayoria de lineas de codigo se terminan con un punto y coma \texttt{;}. Las unicas excepciones a esto los corchetes dentro de funciones e importar librerias, las cuales deben estar separadas por un salto de linea.

@@ -1,0 +1,61 @@
+Las variables en C se identifican mediante su nombre y tipo. Previamente en Python, podiamos ingresar cualquier tipo de dato a una variable, segun el contexto que necesitmos. En C esto no es posible, se le necesita indicar especificamente que tipo de dato va a guardar la variable. Esto se le conoce como \textbf{Tipado Estatico}
+
+En el siguiente codigo se ve como declarar variables y asignarles un valor
+
+\begin{lstlisting}[language=c,style=customc,caption={Sentencias de Declaración de Variables}]
+int main(){
+	int x; // Variable con nombre x que guarda datos del tipo entero
+	float y; // Variable con nombre y que guarda datos del tipo flotante (decimales)
+	char c; // Variable con nombre c que guarda datos del tipo caracter
+
+	x = 10; // Le asigna el valor 10 a x;
+	y = x - 6 // Le asigna el valor de x - 6;
+	c = 'a'; // Le asigna el valor del caracter 'a'
+}
+\end{lstlisting}
+
+Hay muchos tipos de datos en C. Uno se podria preguntar el porque debemos de declarar los tipos de datos previo al uso de una variable. Resumido, C asigna una cantidad de memoria especifica a cada variable para asi poder ser eficiente. Las variables de tipo \texttt{int} pueden guardar mas datos que una variable del tipo \texttt{char}. La diferencia viene en la cantidad de bytes.
+Un byte contiene 8 bits, y cada bit indica el numero $0$ o el numero $1$. Mientras mas bits se tenga, mas valores se puede representar. Los valores vienen de la forma $2^{\mathrm{bits}}$, con 8 bits pueden representarse $2^{8} = 128$ valores. Con 4 bytes, tendriamos 32 bits, y por tanto $2^{32} = 4294967296$.
+
+Podemos entonces notar que cada tipo nos permitira identificar el rango de valores que puede contener la función. Aqui se tiene una tabla de los tipos de datos mas comunes
+
+\begin{table}
+	\centering
+	\caption{Tipos de Datos en C}
+	\begin{tabular}{|l|c|}
+		\hline
+		\texttt{char} & Para datos caracteres. Utiliza un byte. \\
+		\texttt{int} & Para datos de tipo numerico entero. Utiliza 4 bytes. \\
+		\texttt{float} & Para datos de tipo flotante (decimales). Utiliza 4 bytes \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Para los tipos de datos numericos \texttt{int}, se puede expandir su memoria utilizando el termino \texttt{long}. Un dato que utilize este tipo representa numeros enteros igualmente, pero con mas bytes para mayor precision. Lo mismo podemos hacer para valores del tipo flotante, utilizando el tipo \texttt{double}.
+
+Dependiendo del sistema, sera una cantidad o otra. Podemos saber cuanta cantidad de bytes es utilizada por una variable utilizando el operador \texttt{sizeof}.
+
+Por ejemplo, este programa mostrara por pantalla la cantidad de bytes de los tipos de datos declarados previamente.
+
+\begin{lstlisting}[language=c,style=customc,caption={Mostrar tamaño mediante sizeof}]
+int main(){
+	int x; // Variable con nombre x que guarda datos del tipo entero
+	float y; // Variable con nombre y que guarda datos del tipo flotante (decimales)
+	char c; // Variable con nombre c que guarda datos del tipo caracter
+
+	printf("Tamano variable int: %d", &x);
+	printf("Tamano variable float: %d", &y);
+	printf("Tamano variable char: %d, &c");
+}
+\end{lstlisting}
+
+Utilize el comando de printf para ver cuanta memoria es utilizada por los tipos \texttt{long} y \texttt{double}. (Para propositos de este ejercicio, copie el printf del codigo anterior, la explicación del funcionamiento del scanf se vera mas adelante).
+
+\subsection{char y string}
+
+Una importante diferencia a denotar en los tipos son el caracter y el string. Sin meternos profundamente a otra sección importante de la materia conocida como arreglos,el caracter y el string son dos cosas distintas que implican funcionamientos distintos.
+
+\begin{itemize}
+	\item \textbf{char} es un caracter unico. Solo puede representar una letra (caracter ASCII) a la vez. Se utilizan las comillas simples para representarlos, por lo que 'c' es un caracter, mientras que \"c\" no lo es.
+	\item \textbf{string} es una cadena de caracteres. A direncia de python, no es tan simple de usar, dado que se utiliza mediante un tipo de dato conocido como arreglo. Por el momento lo mas importante es entender que, se representan de la forma \"string\", o sea, con comillas dobles. Esto son los que se usaron en la función printf, y dado que de momento no lo usaremos como variables, considere que funcionan correctamente en la función printf y scanf (que veremos a continuación).
+\end{itemize}

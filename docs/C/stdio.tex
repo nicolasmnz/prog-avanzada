@@ -1,0 +1,88 @@
+La libreria importada de \texttt{stdio} (STanDard Input Output) nos permite hacer uso de dos funciones especiales para hacer toma y muestra de datos por pantalla. Para poder usarlos correctamente, primero debemos de conocer las marcas de formato.
+
+\subsection{Marcas de Formato}
+
+Las marcas de formato son formas de marcar que se introducira un valor en la cadena de caracteres (string). Por ejemplo, en el codigo de imprimir el tamaño de los tipos de datos, se utilizo un especificador de formato del tipo \texttt{\%d}. Este especifico, indicara que se le dara un valor del tipo \textbf{d}igit para ser impreso por pantalla.
+
+Se tienen varias marcas de formato. Las mas importantes son las siguientes.
+
+\begin{table}[h]
+	\centering
+	\caption{Marcas de Formato en C}
+	\begin{tabular}{|l|c|}
+		\hline
+		\textbf{Tipo} & \textbf{Marca} \\
+		\hline
+		\texttt{int} & \texttt{\%d} \\
+		\hline
+		\texttt{unsigned int} & \texttt{\%u} \\
+		\hline
+		\texttt{short} & \texttt{\%hd} \\
+		\hline
+		\texttt{unsigned short} & \texttt{\%hu} \\
+		\hline
+		\texttt{long} & \texttt{\%ld} \\
+		\hline
+		\texttt{unsigned long} & \texttt{\%lu} \\
+		\hline
+		\texttt{long long} & \texttt{\%lld} \\
+		\hline
+		\texttt{unsigned long long} & \texttt{\%llu} \\
+		\hline
+		\texttt{float} & \texttt{\%f} \\
+		\hline
+		\texttt{double} & \texttt{\%lf} \\
+		\hline
+		\texttt{long double} & \texttt{\%Lf} \\
+		\hline
+		\texttt{char} & \texttt{\%c} \\
+		\hline
+		\texttt{char[]} (cadena) & \texttt{\%s} \\
+		\hline
+		Puntero & \texttt{\%p} \\
+		\hline
+		Hexadecimal & \texttt{\%x} o \texttt{\%X} \\
+		\hline
+		Octal & \texttt{\%o} \\
+		\hline
+		Notación científica & \texttt{\%e} o \texttt{\%E} \\
+		\hline
+	\end{tabular}
+\end{table}
+
+Lo importante de estas marcas de formato es tenerlas en consideración al hacer tipos de datos. Hay varios de los que aparecen que no hemos visto aun (char[], hexadecimal o puntero), pero con tener esta tabla en mano e ssuficiente para poder entender el funcionamiento. Ahora, debemos aplicarla en nuestras funciones de toma de datos y muestra de datos por pantalla.
+
+\subsection{Muestra de datos por pantalla {printf}}
+
+Para mostrar datos por pantalla, ya se vio previamente la función \texttt{printf}. Esta función se encarga de mostrar por pantalla una cadena de caracteres explicita. Si le queremos agregar un resultado de una (o mas) variables, se debe de utilizar la marca de formato indicada previamente. Por ejemplo, si queremos multiplicar el valor de una variable y mostrarlo por pantalla se veria de la siguiente manera.
+
+\begin{lstlisting}[language=c,style=customc,caption={Función printf(Output en C)}]
+#include <studio.h>
+
+int main(){
+    int x = 10; // Variable con tipo de dato int
+	int y = x * 2;
+	printf("Multiplicacion por dos de %d: %d", &x, &y); // Muestra el resultado de la multiplicacion por dos
+}
+\end{lstlisting}
+
+Notemos que al utilizar el printf, el resultado de la variable $x$ se muestra exactamente en la primera marca de formato, mientras que $y$ se muestran en la segunda marca de formato. Esto se debe al orden que indicamos la variables tras el string, siendo $x$ correspondiente a la primera marca e $y$ a la segunda. Esto es extrapolable a mas marcas de formato dentro de un string, dado que el numero de marcas de formato sea igual al numero de variables entregadas, ademas de que el tipo correspondan.
+
+\subsection{Toma de datos (scanf)}
+
+La funcion \texttt{scanf} permite la toma de datos mediante pantalla (terminal). Para hacer uso de esta función, se debe de tener una variable declarada en donde se utilize el valor que recibira. El valor que reciba debe ser acorde con la marca de formato para no generar errores. Por ejemplo, si queremos tomar datos de un numero entero para multiplicarlo por dos se veria de la siguiente manera.
+
+\begin{lstlisting}[language=c,style=customc,caption={Función scanf (Input en C)}]
+#include <studio.h>
+
+int main(){
+	int x; // Variable con tipo de dato int
+	scanf("%d", &x); // Toma de datos de un int. Usa marca de formato digito (%d)
+	int y = x * 2; 
+	printf("Multiplicacion por dos de %d: %d", &x, &y); // Muestra el resultado de la multiplicacion por dos
+}
+\end{lstlisting}
+
+A diferencia del printf, scanf solo permite una toma de datos a la vez. Para tomar mas de un dato, se debe llamar nuevamente a la función scanf con otro marca de formato u otra variable si es que es necesario.
+
+Un problema comun con scanf es el \\ n que se escapa al entregar datos. Considerando el codigo anterior, al ingresar un numero ingresamos la tecla enter, que se considera un salto de linea. El salto de linea no es guardado en la variable $x$, y se quedara esperando a ser tomado por otro scanf. Esto puede causar problemas, dado que, enlo general, no queremos guardar ese caracter. Hay varias formas de escapar este comportamiento, pero recomendamos por el momento llamar a la función scanf con una marca de formato de caracter, y una variable caracter que no usemos, para que asi podamos tomar ese salto de linea y que no afecte a la siguiente toma de datos.

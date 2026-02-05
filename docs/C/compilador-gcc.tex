@@ -1,0 +1,30 @@
+Python es considerado un lenguaje interpreado, dado que el codigo se ejecuta directamente desde el archivo .py, es decir, lee y ejecuta. C, al contrario que python, no es un lenguaje interpretado, para poder ejecutarlo se necesita de transformarlo a lenguaje de computadora en un proceso conocido como \textbf{compilación}.
+
+Para compilar C se utiliza una herramienta conocida como \texttt{gcc} (Tambien existen otras, pero utilizaremos esta en el curso). Esta herramienta funciona mediante terminal, y se le puede ingresar cualquier programa en el formato \texttt{<filename>.c}. El comando para compilar es el siguiente.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Compilar programa basico de C con GCC}]
+user@hostname:~\$ gcc <filename-c>
+\end{lstlisting}
+
+El resultado de este comando sera un nuevo archivo en el directorio actual de la forma \texttt{a.out}. Este es el ejecutable del programa que acabamos de compilar, y se puede ejecutar en la terminal usando un backlash \texttt{\\ }
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Ejecutar programa a.out}]
+user@hostname:~\$ ./<filename-exec>
+\end{lstlisting}
+
+El proceso de compilación con \texttt{gcc} incluye muchas variantes que nos permiten cambiar el comportamiento de la ejecución. Es importante tenerlas en cuenta en el proceso de uso de C, ya que dado sus caracteristicas, podra darnos informaciópn valiosa o cambiar el procesamiento del lenguaje. Esto se hace mediantes las siguientes opciones (flags).
+
+Para que el nombre del ejecutable sea decidido por nosotros, se le puede escoger la opción \texttt{-o}, entregandole el nombre del resultado del ejecutable. En este caso, \texttt{<filename-exec>} sera el nombre con que quedara el ejecutable al compilar.
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Compilar con nombre de ejecutable personalizado}]
+user@hostname:~\$ gcc <filename-c> -o <filename-exec>
+\end{lstlisting}
+
+Si al compilar el programa este contiene un error, se imprimira por pantalla los errores y no se retornara un ejecutable. Hay unos errores conocidos como \texttt{warnings} que no necesariamente afectaran al programa, pero pueden generar errores. El compilador por defecto no mostrara estos errores, a excepción de utilizarse la flag \texttt{-wall}
+
+\begin{lstlisting}[language=bash, style=terminal, caption={Compilar mostrando Warnings}]
+user@hostname:~\$ gcc <filename-c> -wall
+\end{lstlisting}
+
+Hay mas variedades en el uso de \texttt{gcc}, pero con estas son mas que suficiente en el contexto actual del curso.
+
