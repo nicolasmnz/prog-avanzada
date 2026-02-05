@@ -1,12 +1,16 @@
 Las variables en C se identifican mediante su nombre y tipo. Previamente en Python, podiamos ingresar cualquier tipo de dato a una variable, segun el contexto que necesitmos. En C esto no es posible, se le necesita indicar especificamente que tipo de dato va a guardar la variable. Esto se le conoce como \textbf{Tipado Estatico}
 
-En el siguiente codigo se ve como declarar variables
+En el siguiente codigo se ve como declarar variables y asignarles un valor
 
 \begin{lstlisting}[language=c,style=customc,caption={Sentencias de Declaración de Variables}]
 int main(){
 	int x; // Variable con nombre x que guarda datos del tipo entero
 	float y; // Variable con nombre y que guarda datos del tipo flotante (decimales)
 	char c; // Variable con nombre c que guarda datos del tipo caracter
+
+	x = 10; // Le asigna el valor 10 a x;
+	y = x - 6 // Le asigna el valor de x - 6;
+	c = 'a'; // Le asigna el valor del caracter 'a'
 }
 \end{lstlisting}
 
