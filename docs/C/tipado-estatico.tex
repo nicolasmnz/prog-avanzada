@@ -11,7 +11,7 @@ int main(){
 \end{lstlisting}
 
 Hay muchos tipos de datos en C. Uno se podria preguntar el porque debemos de declarar los tipos de datos previo al uso de una variable. Resumido, C asigna una cantidad de memoria especifica a cada variable para asi poder ser eficiente. Las variables de tipo \texttt{int} pueden guardar mas datos que una variable del tipo \texttt{char}. La diferencia viene en la cantidad de bytes.
-Un byte contiene 8 bits, y cada bit indica el numero $0$ o el numero $1$. Mientras mas bits se tenga, mas valores se puede representar. Los valores vienen de la forma $2^{\text{bits}}$, con 8 bits pueden representarse $2^8 = 128$ valores. Con 4 bytes, tendriamos 32 bits, y por tanto $2^32 = 4294967296$.
+Un byte contiene 8 bits, y cada bit indica el numero $0$ o el numero $1$. Mientras mas bits se tenga, mas valores se puede representar. Los valores vienen de la forma $2^{\mathrm{bits}}$, con 8 bits pueden representarse $2^{8} = 128$ valores. Con 4 bytes, tendriamos 32 bits, y por tanto $2^{32} = 4294967296$.
 
 Podemos entonces notar que cada tipo nos permitira identificar el rango de valores que puede contener la función. Aqui se tiene una tabla de los tipos de datos mas comunes
 
@@ -39,9 +39,9 @@ int main(){
 	float y; // Variable con nombre y que guarda datos del tipo flotante (decimales)
 	char c; // Variable con nombre c que guarda datos del tipo caracter
 
-	printf("Tamaño variable int: %d", &x);
-	printf("Tamaño variable float: %d", &y);
-	printf("Tamaño variable char: %d, &c");
+	printf("Tamano variable int: %d", &x);
+	printf("Tamano variable float: %d", &y);
+	printf("Tamano variable char: %d, &c");
 }
 \end{lstlisting}
 
