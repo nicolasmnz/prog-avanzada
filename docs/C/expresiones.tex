@@ -1,0 +1,25 @@
+Antes de entrar a estructuras de control e iteración, haremos un repaso de las expresiones que permite el lenguaje C. La mayoria son similares a Python, pero es importante notar unas diferencias.
+
+\subsection{Aritmeticos}
+
+Los operadores aritmeticos son equivalentes a los de python. Se tienen suma ($+$), resta ($-$), producto o multiplicacion ($*$), división ($/$), resto de la division ($\%$). No hay operador de exponenciar como en Python.
+
+Se pueden realizar aumento de valores utilizando un formato especifico de la forma \texttt{x += 1;}, donde indica que la variable $x$ aumente su valor en $1$. Puede realizar esta operación tambien con suma y resta. Esto tambien puede hacerse mediante \texttt{x++;}, que le suma uno al valor de x.
+
+\subsection{Logica}
+
+Los operadores de logica refieren a resultados de verdadero o falso. Visto en Matematicas Discretas y Matematicas 1, incluye expresiones logicas como and, or. A diferencia de Python, las expresiones logicas tienen simbolos expecificos.
+
+\begin{itemize}
+	\item El operador \textbf{and} se escribe como \texttt{\&\&}.
+	\item El operador \textbf{or} se escribe como \texttt{||}
+	\item El operador \textbf{negado} se escribe como \texttt{!}. Se indica previo a la expresion a negar.
+\end{itemize}
+
+La logica en C es simple. Cualquier valor que sea distinto de $0$ sera considerado \textbf{verdadero}, mientras que el valor $0$ indica \textbf{falso}. Si realizamos una expresion logica, compara el valor entero.
+
+\subsection{Comparación}
+
+Podemos comparar valores utilizando las mismas expresiones que en Pyton. Existen igualdad ($==$), distinto de ($!=$), menor que ($<$), menor o igual que ($<=$), mayor que ($>$), mayor o igual que ($>=$).
+
+Lo unico importante a notar es que estos permiten comparar numeros enteros, caracteres, pero no strings como en Python.
