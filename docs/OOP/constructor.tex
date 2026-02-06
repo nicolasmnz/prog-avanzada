@@ -1,0 +1,194 @@
+En las definiciones basicas sobre OOP, definimos la instancia de una clase. Recordando el concepto, una clase puede tener varias instancias, eso significa, varias variables que comparten la estructura de la clase pero con datos distintos dependiendo de si misma. Siguiendo el ejemplo del Auto, dos instancias de un Auto pueden ser un Peugeot y un Ferrari.
+
+Lo importante de las instancias es que cuando las creamos (Definidas por ejemplo dentro de una variable) los datos dentro de esta no vienen inicializados. Una manera de poder inicializar los valores al realizar una instancia es mediante el constructor.
+
+\subsection{Constructor}
+
+El constructor es un tipo especial de metodo el cual se ejecuta al crear la instancia de un objeto. Es decir, cuando creemos la instancia, este metodo se ejecutara, permitiendonos generar una base para los datos que usaremos. Un constructor se escribe de la forma \texttt{<Classname>()}, o sea, comparte el nombre de la clase.
+
+Continuemos el ejemplo del Auto. En el auto, queremos que al iniciar una instancia de este, la velocidad inicial este en $0$. Un constructor que haga esto se veria de la siguiente manera
+
+\begin{lstlisting}[language=c,style=customc,caption={Constructor de una clase}]
+class Auto{ // Definicion de la clase 'Auto'
+	private:
+		int velocidad; // Atributo privado, unicamente accesible por la propia clase
+		std::string patente; // Atributo privado, 
+
+	public:
+
+		Auto(){ // Constructor de la clase
+			velocidad = 0; // Hara que al instanciarla la velocidad quede en 0.
+		}
+
+		std::string getPatente(){ // getter para el atributo patente
+			return patente;
+		}
+
+		int acelerar(int nueva_velocidad){ // Metodo publico, puede accederse desde fuera de la clase
+			// codigo...
+		}
+};
+\end{lstlisting}
+
+\begin{ejer}
+	Modifique el codigo superior para que el constructor de auto cree una patente generica para el auto, asi entendiendo que no tiene patente de base.
+\end{ejer}
+
+Los constructores, al ser metodos, son funciones, y como son una funcion, permiten \textbf{sobrecarga} de funciones. Podemos entonces declarar varios constructores que funcionaran de manera distinta segun los parametros recibidos. Lo unico que hay que hacer es redeclarar el metodo constructor con distintos parametros. Por ejemplo, asi se veria una sobrecarga de un constructor si queremos que el auto inicie con una velocidad especifica.
+
+\begin{lstlisting}[language=C++,style=customc,caption={Sobrecarga de Constructor}]
+class Auto{ // Definicion de la clase 'Auto'
+	private:
+		int velocidad; // Atributo privado, unicamente accesible por la propia clase
+		std::string patente; // Atributo privado, 
+
+	public:
+
+		Auto(){ // Constructor de la clase
+			velocidad = 0; // Hara que al instanciarla la velocidad quede en 0.
+		}
+
+		Auto(int velocidad_inicial){ // Sobrecarga de Constructor. Se le entrega parametro int
+			velocidad = velocidad inicial; 
+		}
+
+		// Mas codigo
+};
+
+int main(){
+	Auto vehiculo1(100); // Este auto empezara con una velocidad de 100. (Sobrecarga de Constructor)
+	Auto vehiculo2; // Este auto empezara con una velocidad de 0 (Constructor)
+	return 0;
+}
+
+\end{lstlisting}
+
+\begin{ejer}
+	Modifique el codigo superior para que tenga un metodo constructor que reciba una patente y la asigne al parametro patente, en vez de asignarle una generica.
+\end{ejer}
+
+\subsection{Destructores}
+
+Tanto como tenemos un metodo especial que se ejecuta cada vez que se crea una instancia de un objeto, tenemos un metodo especial que se ejecuta cada vez que se elimine y/o deje de usar una instancia, llamados destructores. Los destructores se escriben de la misma forma que un constructor, pero agregando un \texttt{~}. La forma generica de un destructor es \texttt{~<Classname>()}.
+
+En C++, las clases tienen destructores propios. No hay necesidad de usar destructores en todas las clases. Los destructores deben usarse cuando tenemos punteros y/o memoria dinamica que se inicia dentro de la clase, puesto que si no se elimina tendremos problemas de \texttt{memory leak}.
+
+Consideremos que tenemos un parametro \texttt{std::string pasajeros}, que tiene una arreglo dinamico con los nombres de los pasajeros del Auto. Un constructor se veria de la siguiente manera.
+
+\begin{lstlisting}[language=C++,style=customCpp,caption={Sobrecarga de Constructor}]
+class Auto{ // Definicion de la clase 'Auto'
+	private:
+		int velocidad; // Atributo privado, unicamente accesible por la propia clase
+		std::string patente; // Atributo privado
+		std::string* pasajeros; 
+
+	public:
+
+		Auto(){ // Constructor de la clase
+			velocidad = 0; // Hara que al instanciarla la velocidad quede en 0.
+			patente = "XX-XX-XX";
+			pasajeros = new std::string(4); // Un arreglo dinamico de 4 pasajeros
+		}
+
+		~Auto(){ // Destructor de la clase
+			delete[] pasajeros // Elimina la memoria dinamica creada en el parametro pasajeros.
+		}
+
+		// Mas codigo
+};
+
+int main(){
+	return 0;
+}
+
+\subsection{Big Three}
+
+La regla de los tres (Big Three Rule) consiste en una regla de implementaciones en clases de C++. Si una clase requiere de un destructor implementado, probablemente necesitara tambien una implementación de un constructor para copias y un operador de copias.
+
+¿Para que necesitamos un operador de copia? Considerando que una clase tenga elementos que se les asignan recursos (tales como un puntero para memoria dinamica), si realizamos una copia de un objeto de esta clase en la forma \texttt{obj1 = obj2} hara que se copien los elementos exceptos aquellos que se les asigne recursos, siendo entonces una copia erronea del elemento. Por ello, habra que implementar un constructor de copias y el operador de copias.
+
+\subsubsection{Constructor para copias}
+
+El constructor para copias permite que al hacer una copia de un objeto, el puntero tenga asignada la misma ubicación de memoria que el objeto original, asi comparten elementos.
+
+Si consideramos el codigo del Auto, una implementación del constructor para copias seria de la siguiente manera:
+
+\begin{lstlisting}[language=C++,style=customCpp,caption={Constructor de copias}]
+class Auto{ // Definicion de la clase 'Auto'
+	private:
+		std::string* pasajeros; 
+		// Otros parametros
+
+	public:
+
+		// Definición de constructor...
+
+		std::string* getPasajeros(){
+			return pasajeros;
+		}
+
+		// Definición del Destructor
+		~Auto(){ // Destructor de la clase
+			delete[] pasajeros // Elimina la memoria dinamica creada en el parametro pasajeros.
+		}
+
+		// Constructor de copias
+		Auto(const Auto& originalAuto){ // Recibe como parametro el auto a copiar
+			pasajeros = originalAuto.getPasajeros(); // El pasajeros del o
+		}
+
+		// Mas codigo
+};
+
+int main(){
+	// Asumir que vehiculo1 ya tiene un arreglo de pasajeros
+	Auto vehiculo2(vehiculo1) // vehiculo2 tendra la misma lista de pasajeros que vehiculo1
+	return 0;
+}
+\end{lstlisting}
+
+Esta implementación hace que cuando \texttt{vehiculo2} usa la sobrecarga del constructor de copias, este se encarge de copiar los elementos originales del parametro indicado (Objeto/Instancia a copiar).
+
+\subsubsection{Implementación de operador de copia}
+
+Si quiere hacerse que se copien los elementos de una clase al hacer \texttt{obj1 = obj2}, se puede implementar mediante la redefinición del operador \texttt{=}. Esto se hace de la siguiente manera:
+
+Nota: Modificar esto cuando encuentre un mejor ejemplo para el operador de copia
+
+\begin{lstlisting}[language=C++,style=customCpp,caption={Implementación de operador de copia}]
+class Auto{ // Definicion de la clase 'Auto'
+	private:
+		std::string* pasajeros; 
+		// Otros parametros
+
+	public:
+
+		// Definición de constructor...
+		
+
+		std::string* getPasajeros(){
+			return pasajeros;
+		}
+
+		// Definición del Destructor
+		~Auto(){ // Destructor de la clase
+			delete[] pasajeros // Elimina la memoria dinamica creada en el parametro pasajeros.
+		}
+
+		// Implementación de operador de copia
+		Auto& operator=(const Auto& autoOriginal){
+			
+		}
+
+		// Mas codigo
+};
+
+int main(){
+	// Asumir que vehiculo1 ya tiene un arreglo de pasajeros
+	Auto vehiculo2(vehiculo1) // vehiculo2 tendra la misma lista de pasajeros que vehiculo1
+	return 0;
+}
+\end{lstlisting}
+
+
+
